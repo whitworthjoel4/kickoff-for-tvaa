@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kick-Off for TVAA | SEAP E-Portfolio</title>
+<meta name="description" content="Team 5's MN22024 Social Entrepreneurship Action Project e-portfolio: a charity football match for Thames Valley Air Ambulance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<style>
+/* Concept: matchday programme x air-ambulance mission log.
+   Livery red, floodlit turf, chalk-line white. Stadium-signage display face, readable serif body.
+   One bold moment per page; everything else quiet. */
+:root{
+  --chalk:#F4F5F1; --surface:#FFFFFF; --ink:#18211D; --muted:#56615B; --line:#D6DBD6;
+  --red:#D11F2F; --red-ink:#FFFFFF; --turf:#2C5A44; --turf-soft:#E2EDE6; --amber:#B7791F;
+  --todo-bg:#FFF1B8; --todo-fg:#5B4600;
+  --night:#0F1714;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --measure:66ch;
+}
+@media (prefers-color-scheme: dark){:root{
+  --chalk:#101614; --surface:#17201C; --ink:#E7ECE9; --muted:#9DA8A2; --line:#2A3530;
+  --red:#FF4B57; --red-ink:#1A0406; --turf:#73C99A; --turf-soft:#1A2D24; --amber:#E9B04F;
+  --todo-bg:#4A3B00; --todo-fg:#FFE48A; color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--chalk);color:var(--ink);font-family:var(--body);font-size:1.075rem;line-height:1.68;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--red);text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:.98;letter-spacing:.005em;margin:0;text-wrap:balance}
+h2{font-size:clamp(2.2rem,4.4vw,3.4rem)}
+h3{font-size:clamp(1.5rem,2.4vw,1.9rem);font-weight:700}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+.read{max-width:var(--measure)}
+.flow>*+*{margin-top:1.05em}
+.todo{background:var(--todo-bg);color:var(--todo-fg);padding:.05em .3em;border-radius:3px;font-style:normal;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.cite{white-space:nowrap}
+.note{font-size:.92rem;color:var(--muted)}
+
+/* ---------- nav ---------- */
+.bar{position:sticky;top:0;z-index:20;background:var(--night);color:#EEF2EF;border-bottom:3px solid var(--red)}
+.bar .wrap{display:flex;align-items:center;gap:18px;min-height:62px;flex-wrap:wrap}
+.crest{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none;margin-right:auto}
+.crest .b{width:36px;height:36px;border-radius:50%;overflow:hidden;background:#fff;flex:none}
+.crest .b img{width:100%;height:100%;object-fit:contain}
+.crest .b.m{background:#0F2A22}.crest .b.m img{object-fit:cover;transform:scale(1.15)}
+.crest strong{font-family:var(--display);font-size:1.45rem;font-weight:800;letter-spacing:.01em}
+.menu{display:flex;gap:2px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.menu a{display:block;color:#C7D0CB;text-decoration:none;font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.02em;padding:16px 11px 13px;border-bottom:3px solid transparent;margin-bottom:-3px}
+.menu a:hover{color:#fff}
+.menu a[aria-current="page"]{color:#fff;border-bottom-color:#fff}
+.menu-btn{display:none}
+@media (max-width:900px){
+  .menu-btn{display:block;background:none;border:1px solid #4A5752;color:#fff;font-family:var(--display);font-weight:700;font-size:1.1rem;padding:6px 12px;border-radius:4px}
+  .menu{display:none;width:100%;flex-direction:column;padding-bottom:10px}
+  .menu.open{display:flex}
+  .menu a{padding:10px 4px;border-bottom:0;margin:0}
+  .menu a[aria-current="page"]{box-shadow:inset 3px 0 0 #fff;padding-left:12px}
+}
+
+/* ---------- hero (home) ---------- */
+.hero{position:relative;background:var(--night);color:#fff;overflow:hidden}
+.hero .photo img{width:100%;height:min(64vh,620px);min-height:300px;object-fit:cover;object-position:50% 48%}
+.hero .photo{position:relative}.hero .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,20,0) 70%,rgba(15,23,20,.85) 92%,#0F1714 100%)}
+.hero .cover{position:relative;z-index:2;margin-top:-90px}
+.hero .cover .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;padding-bottom:44px}
+.fixture{display:flex;flex-direction:column;gap:12px}
+.fixture .teams{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(2.3rem,4.9vw,4.4rem);line-height:.9;letter-spacing:.002em;max-width:15ch}
+.fixture .teams span{display:block}
+.fixture .teams .v{color:var(--red);font-size:.55em;line-height:1.2}
+@media (prefers-color-scheme: dark){.fixture .teams .v{color:#FF4B57}}
+.fixture .when{font-size:1.1rem;color:#DDE4E0;max-width:46ch}
+.result{background:var(--red);color:#fff;padding:20px 24px 18px;min-width:250px;border-radius:2px}
+@media (prefers-color-scheme: dark){.result{background:#C81B2B}}
+.result b{display:block;font-family:var(--display);font-weight:900;font-size:clamp(3.4rem,6vw,4.6rem);line-height:.9;font-variant-numeric:tabular-nums}
+.result span{display:block;font-size:.98rem;line-height:1.4;margin-top:6px}
+.result small{display:block;margin-top:10px;font-size:.82rem;opacity:.85}
+@media (max-width:760px){.hero .cover .wrap{grid-template-columns:minmax(0,1fr)}.result{min-width:0}.hero .cover{margin-top:-40px}}
+
+/* ---------- page head (inner pages) ---------- */
+.head{background:var(--night);color:#fff;position:relative;overflow:hidden}
+.head .wrap{padding-block:76px 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;position:relative;z-index:2}
+.head h1{font-size:clamp(3rem,8vw,6.2rem);font-weight:900;line-height:.86}
+.head .lede{margin-top:16px;color:#D3DBD6;max-width:58ch;font-size:1.12rem}
+.head .crit{font-family:var(--display);font-weight:700;font-size:1.15rem;color:#fff;border:1px solid rgba(255,255,255,.35);padding:10px 14px;border-radius:3px;text-align:right;line-height:1.25}
+.head .crit b{display:block;font-size:2.2rem;font-weight:900;color:#FF5D68}
+.head::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 90px,rgba(255,255,255,0) 90px 180px)}
+@media (max-width:700px){.head .wrap{grid-template-columns:minmax(0,1fr)}.head .crit{text-align:left;justify-self:start}}
+
+/* ---------- layout ---------- */
+section.page[hidden]{display:none}
+.block{padding-block:64px;border-top:1px solid var(--line)}
+.block:first-child{border-top:0}
+.split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:start}
+@media (max-width:900px){.split{grid-template-columns:minmax(0,1fr);gap:32px}}
+.stack{display:flex;flex-direction:column;gap:22px}
+figure{margin:0;display:flex;flex-direction:column;gap:8px}
+figcaption{font-size:.9rem;color:var(--muted);line-height:1.45}
+.ack{border-left:4px solid var(--turf);padding:4px 0 4px 16px;font-size:.95rem;color:var(--muted);max-width:var(--measure)}
+.ack strong{color:var(--ink)}
+
+/* contents */
+.contents{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:2px solid var(--ink)}
+.contents a{display:flex;flex-direction:column;gap:6px;padding:20px 22px 22px 0;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
+.contents a+a{padding-left:22px;border-left:1px solid var(--line)}
+.contents a:nth-child(3n+1){padding-left:0;border-left:0}
+.contents b{font-family:var(--display);font-size:1.7rem;font-weight:800;line-height:1}
+.contents span{font-size:.95rem;color:var(--muted)}
+.contents a:hover b{color:var(--red)}
+@media (max-width:760px){.contents{grid-template-columns:minmax(0,1fr)}.contents a,.contents a+a{padding-left:0;border-left:0}}
+
+.gazebos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.gazebos img{aspect-ratio:1;object-fit:cover;width:100%;border-radius:2px}
+
+.objectives{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:2px solid var(--ink)}
+.objectives li{padding:22px 24px 24px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px}
+.objectives li:nth-child(even){padding-left:24px;border-left:1px solid var(--line)}
+.objectives .code{font-family:var(--display);font-weight:900;font-size:2.4rem;line-height:.9;color:var(--red);grid-row:span 2}
+.objectives b{font-family:var(--display);font-size:1.45rem;font-weight:700;line-height:1.05}
+.objectives p{font-size:.98rem;color:var(--muted)}
+@media (max-width:760px){.objectives{grid-template-columns:minmax(0,1fr)}.objectives li:nth-child(even){padding-left:0;border-left:0}}
+
+.teamsheet{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:32px;border-top:2px solid var(--ink)}
+.teamsheet li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:1rem}
+.teamsheet li b{font-weight:600}
+@media (max-width:760px){.teamsheet{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- activities ---------- */
+.engine{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:2px solid var(--ink);background:var(--surface)}
+.engine div{padding:18px 18px 20px;position:relative;min-width:0}
+.engine div+div{border-left:1px solid var(--line)}
+.engine div b{display:block;font-family:var(--display);font-weight:800;font-size:1.6rem;line-height:1;margin-bottom:6px}
+.engine div span{font-size:.95rem;color:var(--muted);line-height:1.45;display:block}
+.engine div:not(:last-child)::after{content:"";position:absolute;right:-9px;top:50%;width:16px;height:16px;background:var(--surface);border-top:1px solid var(--line);border-right:1px solid var(--line);transform:translateY(-50%) rotate(45deg);z-index:1}
+@media (max-width:760px){.engine{grid-template-columns:minmax(0,1fr)}.engine div+div{border-left:0;border-top:1px solid var(--line)}.engine div:not(:last-child)::after{right:auto;left:28px;top:auto;bottom:-9px;transform:rotate(135deg)}}
+
+.activity{display:grid;grid-template-columns:120px minmax(0,1fr);gap:32px;padding-block:56px;border-top:1px solid var(--line)}
+.activity .n{font-family:var(--display);font-weight:900;font-size:6rem;line-height:.78;color:var(--red)}
+.activity h2{margin-bottom:6px}
+.activity .serves{font-size:.95rem;color:var(--muted)}
+@media (max-width:760px){.activity{grid-template-columns:minmax(0,1fr);gap:8px}.activity .n{font-size:4rem}}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.pair img{width:100%;border-radius:2px}
+.pair.wide{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}
+.pair.wide img{height:100%;object-fit:cover}
+@media (max-width:640px){.pair,.pair.wide{grid-template-columns:minmax(0,1fr)}}
+.phone{aspect-ratio:9/16;max-height:560px;width:100%;border-radius:22px;border:8px solid var(--ink);background:var(--night);color:#cfd8d3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:18px;position:relative;overflow:hidden}
+.phone::before{content:"";position:absolute;top:10px;left:50%;width:70px;height:6px;border-radius:6px;background:#2a3530;transform:translateX(-50%)}
+.phone b{font-family:var(--display);font-weight:800;font-size:1.8rem;color:#fff;line-height:1}
+.phone iframe,.phone video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.theory{border-left:3px solid var(--turf);padding-left:16px;color:var(--muted);font-size:.98rem;max-width:var(--measure)}
+
+/* ---------- management ---------- */
+.gantt-wrap{overflow-x:auto;border:1px solid var(--line);background:var(--surface);border-radius:2px}
+.gantt{min-width:760px;padding:20px 22px 8px;font-size:.95rem}
+.gantt .row{display:grid;grid-template-columns:160px repeat(11,minmax(0,1fr));align-items:center;min-height:36px;position:relative}
+.gantt .row.wk{min-height:28px;border-bottom:1px solid var(--line)}
+.gantt .row.wk span{font-family:var(--display);font-weight:700;color:var(--muted);text-align:center;font-size:1rem}
+.gantt .row.wk span.now{color:var(--red)}
+.gantt .lbl{font-weight:600}
+.gantt .bar-t{height:16px;border-radius:2px;background:var(--turf)}
+.gantt .bar-t.red{background:var(--red)}
+.gantt .ms{justify-self:center;width:13px;height:13px;transform:rotate(45deg);background:var(--ink)}
+.gantt .ms.red{background:var(--red)}
+.gantt-key{display:flex;flex-wrap:wrap;gap:6px 22px;padding:12px 22px 18px;font-size:.88rem;color:var(--muted)}
+.gantt-key i{display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:-1px;border-radius:2px}
+
+.raci{width:100%;border-collapse:collapse;font-size:.97rem}
+.tbl{overflow-x:auto;border-top:2px solid var(--ink)}
+table{border-collapse:collapse;width:100%;font-size:.97rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:11px 12px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--display);font-weight:700;font-size:1.1rem;letter-spacing:.01em}
+td.r{text-align:right;white-space:nowrap;padding-right:18px}
+tfoot td{font-weight:600;border-bottom:2px solid var(--ink)}
+
+.grids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px}
+@media (max-width:900px){.grids{grid-template-columns:minmax(0,1fr)}}
+.pi{display:grid;grid-template-columns:22px minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr) 22px;gap:6px}
+.pi .q{background:var(--surface);border:1px solid var(--line);padding:12px;min-height:128px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.pi .q.key{border:2px solid var(--red)}
+.pi .q h4{margin:0;font-family:var(--display);font-weight:700;font-size:1.1rem;color:var(--muted)}
+.pi .q.key h4{color:var(--red)}
+.pi .ax{font-family:var(--display);font-weight:700;color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.pi .ay{writing-mode:vertical-rl;transform:rotate(180deg);grid-row:1/3}
+.pi .axx{grid-column:2/4}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font-size:.85rem;line-height:1.3;padding:3px 8px;border-radius:2px;background:var(--chalk);border:1px solid var(--line)}
+.chip.moved{background:var(--red);border-color:var(--red);color:var(--red-ink);font-weight:600}
+.gridcap{font-family:var(--display);font-weight:800;font-size:1.5rem;margin-bottom:10px}
+
+.sev{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.sev i{display:inline-block;height:8px;border-radius:2px;background:var(--turf)}
+.sev.m i{background:var(--amber)}
+.sev.h i{background:var(--red)}
+
+/* flight path (signature) */
+.route{background:var(--night);color:#E7ECE9;border-radius:2px;padding:28px 24px 20px;overflow-x:auto}
+.route svg{min-width:820px;width:100%;height:auto;display:block}
+.route .lab{font-family:var(--display);font-weight:800;font-size:22px;fill:#fff}
+.route .sub{font-family:var(--body);font-size:14px;fill:#AEBAB4}
+.route .sub.ok{fill:#FF8A92}
+.route-key{display:flex;gap:6px 22px;flex-wrap:wrap;font-size:.86rem;color:#AEBAB4;margin-top:6px}
+
+.chain{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;border:1px solid var(--line);background:var(--surface)}
+.chain span{padding:12px 16px;font-size:.95rem;border-right:1px solid var(--line);display:flex;align-items:center}
+.chain span.r{color:var(--red);font-weight:600}
+.chain span.m{background:var(--turf-soft);color:var(--turf);font-weight:600;border-right:0;flex:1 1 220px}
+
+.roi{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-top:2px solid var(--ink);padding-top:14px}
+.roi b{font-family:var(--display);font-weight:900;font-size:3.6rem;line-height:.9;color:var(--red)}
+
+/* ---------- impact ---------- */
+.score{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.score li{display:grid;grid-template-columns:70px minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:start}
+.score .code{font-family:var(--display);font-weight:900;font-size:2rem;color:var(--red);line-height:1}
+.score .k{font-size:.82rem;color:var(--muted);display:block}
+.score b{font-weight:600}
+@media (max-width:760px){.score li{grid-template-columns:50px minmax(0,1fr)}.score li>div:nth-child(n+3){grid-column:2}}
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:900px){.quotes{grid-template-columns:minmax(0,1fr)}}
+blockquote{margin:0;padding:18px 0 0;border-top:3px solid var(--red);font-size:1.05rem}
+blockquote footer{margin-top:10px;font-size:.88rem;color:var(--muted)}
+.cycle{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;counter-reset:c;border-top:2px solid var(--ink)}
+.cycle li{padding:18px 20px 22px 0;counter-increment:c;font-size:.98rem;min-width:0}
+.cycle li+li{padding-left:20px;border-left:1px solid var(--line)}
+.cycle li::before{content:counter(c);font-family:var(--display);font-weight:900;font-size:2.4rem;line-height:1;color:var(--red);display:block}
+.cycle li b{display:block;font-family:var(--display);font-weight:800;font-size:1.35rem;margin:4px 0 6px}
+@media (max-width:900px){.cycle{grid-template-columns:minmax(0,1fr)}.cycle li+li{padding-left:0;border-left:0;border-top:1px solid var(--line)}}
+
+/* ---------- refs / appendices ---------- */
+.refs p{padding-left:2.2em;text-indent:-2.2em;margin-bottom:12px;font-size:1rem;overflow-wrap:anywhere}
+.apps{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.apps li{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line)}
+.apps .code{font-family:var(--display);font-weight:900;font-size:2rem;color:var(--red);line-height:1}
+.apps b{font-weight:600}
+@media (max-width:640px){.apps li{grid-template-columns:44px minmax(0,1fr)}.apps li>span:last-child{grid-column:2}}
+
+.pager{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:36px 64px;border-top:1px solid var(--line)}
+.pager a{font-family:var(--display);font-weight:800;font-size:1.6rem;text-decoration:none;color:var(--ink)}
+.pager a:hover{color:var(--red)}
+.pager a small{display:block;font-family:var(--body);font-weight:400;font-size:.85rem;color:var(--muted)}
+.pager .next{text-align:right;margin-left:auto}
+footer.site{background:var(--night);color:#9DA8A2;font-size:.88rem}
+footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (prefers-reduced-motion:no-preference){
+  .page:not([hidden]) .head h1,.page:not([hidden]) .fixture .teams{animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{transform:translateY(14px);opacity:.2}to{transform:none;opacity:1}}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="crest" href="#home" aria-label="Kick-Off for TVAA, home">
+      <span class="b"><img src="img/tvaa-logo.jpg" alt=""></span>
+      <span class="b m"><img src="img/mindset-badge.jpg" alt=""></span>
+      <strong>Kick-Off for TVAA</strong>
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+    <nav aria-label="E-portfolio sections"><ul class="menu" id="menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#project">The Project</a></li>
+      <li><a href="#management">How We Managed It</a></li>
+      <li><a href="#impact">Impact &amp; Reflection</a></li>
+      <li><a href="#references">References</a></li>
+      <li><a href="#appendices">Appendices</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main>
+
+<!-- =================== HOME (Section A) =================== -->
+<section class="page" id="home" aria-label="Home">
+  <div class="hero">
+    <div class="photo"><img src="img/team-photo.jpg" alt="Both squads, the referee and assistants lined up together on the halfway line at The Kingsbrook School 4G pitch"></div>
+    <div class="cover"><div class="wrap">
+      <div class="fixture">
+        <h1 class="teams"><span>Thames Valley Air Ambulance FC</span><span class="v">v</span><span>Mindset United</span></h1>
+        <p class="when">Sunday 8 November 2026, kick-off 4pm, at The Kingsbrook School 4G in Aylesbury. A charity match organised by Team 5 for MN22024 Social Entrepreneurship Action Project.</p>
+      </div>
+      <div class="result">
+        <b>£1,465</b>
+        <span>raised for Thames Valley Air Ambulance, including £280 Gift Aid, from 41 donations</span>
+        <small>JustGiving, 12 November 2026</small>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="wrap">
+    <div class="block stack">
+      <p class="ack"><strong>Generative AI acknowledgement.</strong> We acknowledge that this work is our own, and we used <span class="todo">[name and version of tool] ([publisher], [URL]) to [one sentence describing how it was used]</span>.</p>
+      <nav class="contents" aria-label="Contents">
+        <a href="#project"><b>The Project</b><span>The four activities, why we chose them and how they fit together (Section B)</span></a>
+        <a href="#management"><b>How We Managed It</b><span>Planning, team, stakeholders, risk and money (Section C)</span></a>
+        <a href="#impact"><b>Impact &amp; Reflection</b><span>Results against our goals, what we learned and what comes next (Sections D and E)</span></a>
+      </nav>
+    </div>
+
+    <div class="block split">
+      <div class="read flow">
+        <h2>Why Thames Valley Air Ambulance</h2>
+        <p>Thames Valley Air Ambulance (TVAA) brings critical care to the scene of emergencies across Berkshire, Buckinghamshire and Oxfordshire. Its purpose is “to give everybody within our community the best chance of surviving and recovering from an emergency” <span class="cite">(TVAA, 2026)</span>. It was called out 3,302 times last year, yet it receives no government or NHS funding and relies on public donations <span class="cite">(TVAA, 2026)</span>.</p>
+        <p>We came to TVAA through family. One of our team had been to a TVAA FC charity event when he was younger, and had heard the side had not been able to put on events for the last few years. That gave the project a social purpose beyond a single donation: help bring TVAA FC's community events back.</p>
+        <p>A sport-based event suited both the charity and our resources. TVAA FC already had players, kit and a following; we could add organisation, promotion and project management. Social entrepreneurship applies business methods to social problems, and this project let us do that with a real charity and real deadlines.</p>
+      </div>
+      <figure>
+        <div class="gazebos">
+          <img src="img/gazebo-3.jpg" alt="Two red Thames Valley Air Ambulance gazebos on grass">
+          <img src="img/gazebo-2.jpg" alt="Red Thames Valley Air Ambulance gazebo">
+          <img src="img/gazebo-1.jpg" alt="Thames Valley Air Ambulance stall with branded table">
+        </div>
+        <figcaption>Thames Valley Air Ambulance gazebo and stall setup.</figcaption>
+      </figure>
+    </div>
+
+    <div class="block stack">
+      <div class="read flow">
+        <h2>Our objectives</h2>
+        <p>We set objectives using the SMART criteria <span class="cite">(Doran, 1981)</span> and tied each to TVAA's mission to protect, save and revive lives <span class="cite">(Whittington et al., 2021)</span>. The same codes are used to report results on the Impact &amp; Reflection page.</p>
+      </div>
+      <ol class="objectives">
+        <li><span class="code">O1</span><b>Hold a safe charity match by 8 November 2026</b><p>A full 11-a-side game at a suitable venue, with a qualified referee and a completed risk assessment.</p></li>
+        <li><span class="code">O2</span><b>Raise <span class="todo">£[target from approval form]</span> through JustGiving</b><p>One donation page, promoted through every channel and open before and after the match.</p></li>
+        <li><span class="code">O3</span><b>Reach <span class="todo">[target]</span> people online</b><p>Matchday graphics, ambassador videos and a LinkedIn post explaining why TVAA depends on donations.</p></li>
+        <li><span class="code">O4</span><b>Bring TVAA FC's events back</b><p>Re-engage the TVAA FC squad and build a relationship with Mindset United that can lead to future fixtures.</p></li>
+      </ol>
+    </div>
+
+    <div class="block stack">
+      <h2>Team 5</h2>
+      <ul class="teamsheet">
+        <li><b>Joel Whitworth</b><span class="todo">[role]</span></li>
+        <li><b class="todo">[Name]</b><span class="todo">[role]</span></li>
+        <li><b class="todo">[Name]</b><span class="todo">[role]</span></li>
+        <li><b class="todo">[Name]</b><span class="todo">[role]</span></li>
+        <li><b class="todo">[Name]</b><span class="todo">[role]</span></li>
+        <li><b class="todo">[Name]</b><span class="todo">[role]</span></li>
+      </ul>
+      <p class="note read">The project ran from team formation on 2 October to the match on 8 November 2026.</p>
+    </div>
+    <nav class="pager" aria-label="Next page"><a class="next" href="#project"><small>Next</small>The Project</a></nav>
+  </div>
+</section>
+
+<!-- =================== THE PROJECT (Section B) =================== -->
+<section class="page" id="project" aria-label="The Project" hidden>
+  <div class="head"><div class="wrap">
+    <div><h1>The Project</h1><p class="lede">Four activities built to feed each other: a campaign that sent people to a match, a match that sent people to the donation page, and a gathering that kept the community together afterwards.</p></div>
+    <p class="crit">Section B<b>25%</b>Activities</p>
+  </div></div>
+  <div class="wrap">
+    <div class="block stack">
+      <h2>How the activities fit together</h2>
+      <div class="engine" role="list">
+        <div role="listitem"><b>Campaign</b><span>Graphics, ambassador videos and LinkedIn build awareness</span></div>
+        <div role="listitem"><b>Match</b><span>Free entry on 8 November turns awareness into attendance</span></div>
+        <div role="listitem"><b>Donate</b><span>Every post and the matchday point to one JustGiving page</span></div>
+        <div role="listitem"><b>Gather</b><span>Players and supporters stay together after the final whistle</span></div>
+      </div>
+      <p class="read">Each activity produced content or attention for the next. The match gave the campaign its photos and story, and the campaign gave the match its crowd. A single event on its own would have raised money once; linking it to an online campaign extended its reach before and after the day.</p>
+    </div>
+
+    <article class="activity">
+      <div class="n" aria-hidden="true">1</div>
+      <div class="stack">
+        <div><h2>The charity match</h2><p class="serves">Serves objectives O1 and O4</p></div>
+        <div class="read flow">
+          <p>TVAA FC played Mindset United on Sunday 8 November 2026 on the floodlit 4G pitch at The Kingsbrook School, Aylesbury. Kick-off was 4pm, entry was free, and the game was refereed by an official arranged through Mindset United. It fell on Remembrance Sunday, so both teams held a minute's silence before kick-off.</p>
+          <p>We built the event on resources that already existed. TVAA FC had a squad, kit and a supporter base, and Mindset United's chairman had access to a venue and a referee. This follows the effectuation logic of starting from “who I am, what I know and whom I know” rather than a fixed plan <span class="cite">(Sarasvathy, 2001)</span>. It made an ambitious event achievable for a student team in five weeks.</p>
+        </div>
+        <div class="pair wide">
+          <figure><img src="img/minute-silence.jpg" alt="Both teams observe a minute's silence around the centre circle"><figcaption>A minute's silence before kick-off on Remembrance Sunday.</figcaption></figure>
+          <figure><img src="img/match-floodlights.jpg" alt="A TVAA player strikes the ball under the floodlights"><figcaption>Under the floodlights at Kingsbrook.</figcaption></figure>
+        </div>
+      </div>
+    </article>
+
+    <article class="activity">
+      <div class="n" aria-hidden="true">2</div>
+      <div class="stack">
+        <div><h2>The digital campaign</h2><p class="serves">Serves objective O3</p></div>
+        <div class="read flow">
+          <p>We designed our own matchday graphics in TVAA's red and white so every post looked like part of one campaign. Not-for-profit marketing works best when it puts the purpose first and tells a story about why the cause matters <span class="cite">(Kotler, 2020)</span>, so our posts led with TVAA's reliance on donations rather than just the fixture details.</p>
+        </div>
+        <div class="pair">
+          <figure><img src="img/promo-poster.jpg" alt="Promotional poster showing Sunday 08.11, The Kingsbrook School 4G, 4pm kick-off, free entry"><figcaption>Promotional poster with date, venue and kick-off.</figcaption></figure>
+          <figure><img src="img/matchday-graphic.jpg" alt="Red matchday graphic with two players and the word Matchday"><figcaption>Matchday graphic.</figcaption></figure>
+        </div>
+        <div class="read flow">
+          <p>To reach beyond our own networks, we secured two short videos from well-known sports figures: boxing promoter Frank Warren and England footballer Chloe Kelly. Each asked viewers to come down and donate. Social media is targeted, immediate and easy to share, but engagement has to be earned <span class="cite">(Kotler, 2020)</span>, and recognisable faces gave people a reason to stop and watch.</p>
+        </div>
+        <div class="pair" style="max-width:640px">
+          <div class="phone" data-video="frank"><b>Frank Warren</b><span class="todo">[video to add]</span></div>
+          <div class="phone" data-video="chloe"><b>Chloe Kelly</b><span class="todo">[video to add]</span></div>
+        </div>
+        <p class="read">We also published a LinkedIn post written so team members, the University of Bath and TVAA could be tagged and reshare it. <span class="todo">[Add a screenshot of the post and its reach.]</span></p>
+      </div>
+    </article>
+
+    <article class="activity">
+      <div class="n" aria-hidden="true">3</div>
+      <div class="stack">
+        <div><h2>One donation page</h2><p class="serves">Serves objective O2</p></div>
+        <div class="read flow">
+          <p>All fundraising ran through a single <a href="https://www.justgiving.com/page/thames-valley-air-ambulance-fc-26" target="_blank" rel="noopener">JustGiving page</a>. One clear call to action mattered more than extra channels. When Cancer Research UK's #nomakeupselfie trend spread in 2014, donations only took off once the charity gave people a simple way to give <span class="cite">(Cancer Research UK, 2014)</span>. Every graphic and video ended with the same instruction to donate via the link.</p>
+          <p>JustGiving claimed Gift Aid automatically on eligible donations, adding £280 to the total at no cost to donors.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="activity">
+      <div class="n" aria-hidden="true">4</div>
+      <div class="stack">
+        <div><h2>Together after the match</h2><p class="serves">Serves objective O4</p></div>
+        <div class="read flow">
+          <p>After the game, players and supporters from both clubs gathered at Rivets Sports and Social Club in Aylesbury to watch the football together. This extended the community side of the day. Treating Mindset United as partners rather than just opponents builds the trust that leads to future fixtures <span class="cite">(Harrison, Bosse and Phillips, 2010)</span>.</p>
+        </div>
+      </div>
+    </article>
+
+    <nav class="pager" aria-label="Page navigation"><a href="#home"><small>Previous</small>Home</a><a class="next" href="#management"><small>Next</small>How We Managed It</a></nav>
+  </div>
+</section>
+
+<!-- =================== MANAGEMENT (Section C) =================== -->
+<section class="page" id="management" aria-label="How We Managed It" hidden>
+  <div class="head"><div class="wrap">
+    <div><h1>How We Managed It</h1><p class="lede">We planned in four phases, managed scope, time, cost and quality, and kept re-planning as venues fell through.</p></div>
+    <p class="crit">Section C<b>25%</b>Project management</p>
+  </div></div>
+  <div class="wrap">
+
+    <div class="block stack">
+      <div class="read flow">
+        <h2>Planning in four phases</h2>
+        <p>A project is a unique, temporary activity with limited resources and a fixed timeframe, set up to deliver beneficial change <span class="cite">(Turner and Müller, 2003)</span>. We used Maylor's <span class="cite">(2021)</span> four phases to structure ours: define it, design it, do it and develop it. We split the work into four packages so each had a clear owner: venue and logistics, players and opposition, promotion and fundraising, and evaluation and the e-portfolio.</p>
+      </div>
+      <div class="gantt-wrap">
+        <div class="gantt" role="img" aria-label="Project timeline across teaching weeks 1 to 11. Define weeks 1 to 2, design weeks 2 to 4, venue search weeks 2 to 6, promotion weeks 3 to 6, match in week 6, develop weeks 7 to 11. Milestones in weeks 4, 8 and 11.">
+          <div class="row wk"><span></span><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span class="now">W6</span><span>W7</span><span>W8</span><span>W9</span><span>W10</span><span>W11</span></div>
+          <div class="row"><span class="lbl">Define</span><span class="bar-t" style="grid-column:2/4"></span></div>
+          <div class="row"><span class="lbl">Design</span><span class="bar-t" style="grid-column:3/6"></span></div>
+          <div class="row"><span class="lbl">Venue search</span><span class="bar-t red" style="grid-column:3/8"></span></div>
+          <div class="row"><span class="lbl">Promotion</span><span class="bar-t" style="grid-column:4/8"></span></div>
+          <div class="row"><span class="lbl">Match day</span><span class="ms red" style="grid-column:7/8"></span></div>
+          <div class="row"><span class="lbl">Develop</span><span class="bar-t" style="grid-column:8/13"></span></div>
+          <div class="row"><span class="lbl">Milestones</span><span class="ms" style="grid-column:5/6"></span><span class="ms" style="grid-column:9/10"></span><span class="ms" style="grid-column:12/13"></span></div>
+        </div>
+        <div class="gantt-key"><span><i style="background:var(--turf)"></i>Phase</span><span><i style="background:var(--red)"></i>Venue search, re-planned several times</span><span><i style="background:var(--ink);transform:rotate(45deg)"></i>Approval and presentation (W4), interim update (W8), submission on 11 December (W11)</span><span><i style="background:var(--red);transform:rotate(45deg)"></i>Match, 8 November</span></div>
+      </div>
+    </div>
+
+    <div class="block stack">
+      <div class="read flow">
+        <h2>Coordinating the team</h2>
+        <p>We agreed a group contract at the start and kept a group log of meetings and decisions. Roles were set out in a RACI matrix <span class="cite">(Maylor, 2021)</span>, so it was clear who did the work, who signed it off, who was consulted and who was kept informed.</p>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">Work package</th><th scope="col">Responsible</th><th scope="col">Accountable</th><th scope="col">Consulted</th><th scope="col">Informed</th></tr></thead>
+        <tbody>
+          <tr><td>Venue and logistics</td><td><span class="todo">[name]</span></td><td><span class="todo">[name]</span></td><td>Mindset United, venues</td><td>TVAA FC squad</td></tr>
+          <tr><td>Players and opposition</td><td><span class="todo">[name]</span></td><td><span class="todo">[name]</span></td><td>Stuart Gibson, TVAA FC manager</td><td>Team 5</td></tr>
+          <tr><td>Promotion and fundraising</td><td><span class="todo">[name]</span></td><td><span class="todo">[name]</span></td><td>TVAA</td><td>Supporters</td></tr>
+          <tr><td>Evaluation and e-portfolio</td><td><span class="todo">[name]</span></td><td><span class="todo">[name]</span></td><td>Unit tutor</td><td>TVAA</td></tr>
+        </tbody>
+      </table></div>
+      <p class="read">Tuckman's <span class="cite">(1965)</span> stages describe our team well. <span class="todo">[Describe forming and storming: how roles settled, any disagreement, and how you reached norming and performing before match week.]</span> We aimed for psychological safety, where anyone could raise a concern early without blame <span class="cite">(Edmondson, 2019)</span>. That mattered when venues fell through and the plan had to change quickly.</p>
+    </div>
+
+    <div class="block stack">
+      <div class="read flow">
+        <h2>Managing stakeholders</h2>
+        <p>We started with a stakeholder register <span class="cite">(Bryson, 2004)</span> and mapped each stakeholder on a power–interest grid <span class="cite">(Mendelow, 1981; Ackermann and Eden, 2011)</span>. Positions change over a project <span class="cite">(Olander and Landin, 2005)</span>, so we redrew the grid at match week. The biggest shift was Mindset United and the Kingsbrook venue, which moved into the key-player quadrant once the match depended on them.</p>
+      </div>
+      <div class="grids">
+        <figure>
+          <p class="gridcap">At approval, week 4</p>
+          <div class="pi">
+            <span class="ax ay">Power</span>
+            <div class="q"><h4>Keep satisfied</h4><div class="chips"><span class="chip">University</span><span class="chip">Venues</span></div></div>
+            <div class="q key"><h4>Key players</h4><div class="chips"><span class="chip">TVAA</span><span class="chip">Stuart Gibson</span><span class="chip">Unit tutor</span></div></div>
+            <div class="q"><h4>Monitor</h4><div class="chips"><span class="chip">General public</span></div></div>
+            <div class="q"><h4>Keep informed</h4><div class="chips"><span class="chip">TVAA FC squad</span><span class="chip">Mindset United</span><span class="chip">Donors</span></div></div>
+            <span class="ax axx">Interest</span>
+          </div>
+        </figure>
+        <figure>
+          <p class="gridcap">At match week</p>
+          <div class="pi">
+            <span class="ax ay">Power</span>
+            <div class="q"><h4>Keep satisfied</h4><div class="chips"><span class="chip">University</span></div></div>
+            <div class="q key"><h4>Key players</h4><div class="chips"><span class="chip">TVAA</span><span class="chip">Stuart Gibson</span><span class="chip moved">Mindset United</span><span class="chip moved">Kingsbrook School</span><span class="chip">Unit tutor</span></div></div>
+            <div class="q"><h4>Monitor</h4><div class="chips"><span class="chip">General public</span></div></div>
+            <div class="q"><h4>Keep informed</h4><div class="chips"><span class="chip">TVAA FC squad</span><span class="chip">Donors</span><span class="chip">Ambassadors</span></div></div>
+            <span class="ax axx">Interest</span>
+          </div>
+          <figcaption>Filled red: stakeholders who moved into the key-player quadrant.</figcaption>
+        </figure>
+      </div>
+      <div class="read flow">
+        <p>We engaged each group according to its position <span class="cite">(Savage et al., 1991)</span>. Stuart Gibson, TVAA FC's manager, acted as project sponsor and was involved in key decisions. Mindset United went from supportive opponent to collaborator once its chairman offered the Kingsbrook pitch and a referee.</p>
+        <p>We chose channels deliberately: phone calls for non-routine negotiations with venues and email for confirmations, matching media richness to the task <span class="cite">(Lengel and Daft, 1988)</span>. For players, WhatsApp polls made availability quick to confirm.</p>
+      </div>
+    </div>
+
+    <div class="block stack">
+      <div class="read flow">
+        <h2>Managing risk</h2>
+        <p>We scored each risk as impact × probability on a 1–5 scale <span class="cite">(Maylor, 2021)</span> and kept the register as a working document. <span class="todo">[Check these scores match the risk assessment submitted in week 4.]</span></p>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">Risk</th><th scope="col" class="r">Impact</th><th scope="col" class="r">Prob.</th><th scope="col">Rating</th><th scope="col">Mitigation</th></tr></thead>
+        <tbody>
+          <tr><td>Venue unavailable on the chosen date</td><td class="r">5</td><td class="r">4</td><td><span class="sev h"><i style="width:80px"></i>20 High</span></td><td>Approach several venues in parallel; keep the date flexible until confirmed</td></tr>
+          <tr><td>Player injury</td><td class="r">4</td><td class="r">3</td><td><span class="sev m"><i style="width:48px"></i>12 Medium</span></td><td>Qualified referee, first-aid kit, named first aider, venue emergency procedures</td></tr>
+          <tr><td>Poor weather or failing light</td><td class="r">3</td><td class="r">3</td><td><span class="sev"><i style="width:36px"></i>9 Low</span></td><td>Floodlit all-weather 4G pitch</td></tr>
+          <tr><td>Low turnout or donations</td><td class="r">3</td><td class="r">3</td><td><span class="sev"><i style="width:36px"></i>9 Low</span></td><td>Online campaign and ambassador videos; donations open before and after the day</td></tr>
+          <tr><td>Not enough players available</td><td class="r">4</td><td class="r">2</td><td><span class="sev"><i style="width:32px"></i>8 Low</span></td><td>WhatsApp availability polls; squad of 15 or more with substitutes</td></tr>
+        </tbody>
+      </table></div>
+      <div class="read flow">
+        <h3>The risk that happened</h3>
+        <p>Our highest-rated risk came true. Mapping risks as a system rather than a list <span class="cite">(Ackermann et al., 2007)</span> showed why it mattered so much: losing a venue put the date at risk, which put the opposition's availability at risk, which held up promotion.</p>
+      </div>
+      <div class="chain" aria-label="How one risk led to the next">
+        <span class="r">Venue falls through</span><span class="r">Date at risk</span><span class="r">Opposition availability</span><span class="r">Promotion delayed</span><span class="m">Response: parallel venue approaches, date held with Mindset United</span>
+      </div>
+      <div class="route">
+        <svg viewBox="0 0 1000 250" role="img" aria-labelledby="routeT routeD">
+          <title id="routeT">The venue search</title>
+          <desc id="routeD">Six venues in order. Thame United had no availability. Risborough Rangers could not host on 8 November. Kidlington and AVD were approached as alternatives. Long Crendon was briefly held for a 2pm kick-off. The Kingsbrook School 4G was confirmed for a 4pm kick-off.</desc>
+          <path d="M70 120 C 140 98, 200 96, 240 110 S 350 142, 400 120 S 510 96, 560 110 S 670 142, 720 120 S 850 96, 910 112" fill="none" stroke="#5E6E67" stroke-width="2.5" stroke-dasharray="7 8"/>
+          <g fill="none" stroke="#7D8C85" stroke-width="2.5">
+            <circle cx="70" cy="120" r="15" fill="#17201C"/><path d="M63 113 l14 14 M77 113 l-14 14"/>
+            <circle cx="240" cy="110" r="15" fill="#17201C"/><path d="M233 103 l14 14 M247 103 l-14 14"/>
+            <circle cx="400" cy="120" r="15" fill="#17201C"/><path d="M393 113 l14 14 M407 113 l-14 14"/>
+            <circle cx="560" cy="110" r="15" fill="#17201C"/><path d="M553 103 l14 14 M567 103 l-14 14"/>
+          </g>
+          <circle cx="720" cy="120" r="15" fill="#17201C" stroke="#E9B04F" stroke-width="2.5"/><path d="M712 120 h16" stroke="#E9B04F" stroke-width="2.5"/>
+          <circle cx="910" cy="112" r="30" fill="#D11F2F"/><circle cx="910" cy="112" r="23" fill="none" stroke="#fff" stroke-width="2"/>
+          <text x="910" y="122" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="900" font-size="30" fill="#fff">H</text>
+          <text class="lab" x="70" y="178" text-anchor="middle">Thame United</text><text class="sub" x="70" y="200" text-anchor="middle">No availability</text>
+          <text class="lab" x="240" y="52" text-anchor="middle">Risborough Rangers</text><text class="sub" x="240" y="74" text-anchor="middle">Could not host on 8 Nov</text>
+          <text class="lab" x="400" y="178" text-anchor="middle">Kidlington</text><text class="sub" x="400" y="200" text-anchor="middle">Approached as alternative</text>
+          <text class="lab" x="560" y="52" text-anchor="middle">AVD</text><text class="sub" x="560" y="74" text-anchor="middle">Approached as alternative</text>
+          <text class="lab" x="720" y="178" text-anchor="middle">Long Crendon</text><text class="sub" x="720" y="200" text-anchor="middle">Briefly held, 2pm</text>
+          <text class="lab" x="910" y="182" text-anchor="middle">Kingsbrook 4G</text><text class="sub ok" x="910" y="204" text-anchor="middle">Confirmed, 4pm kick-off</text>
+          
+          
+        </svg>
+        <div class="route-key"><span>Crossed: not possible</span><span>Amber: held, then released</span><span>Red helipad: confirmed</span></div>
+      </div>
+      <p class="note read"><span class="todo">[Check the outcomes noted for Kidlington and AVD.]</span></p>
+    </div>
+
+    <div class="block stack">
+      <div class="read flow">
+        <h2>Managing resources and money</h2>
+        <p>Each team had a budget of up to £100. We treated it as an investment and used financial bootstrapping wherever possible: the graphics were made in-house, the ambassador videos cost nothing, and Mindset United covered the referee. Our only cost was the £85 pitch hire, which is being reclaimed through the University's expenses process.</p>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">Item</th><th scope="col" class="r">Cost</th><th scope="col">Funded by</th></tr></thead>
+        <tbody>
+          <tr><td>The Kingsbrook School 4G pitch hire</td><td class="r">£85.00</td><td>Team budget, via expense claim</td></tr>
+          <tr><td>Referee</td><td class="r">£0.00</td><td>Covered by Mindset United</td></tr>
+          <tr><td>Graphics, videos and social media</td><td class="r">£0.00</td><td>Made in-house or donated</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total spent</td><td class="r">£85.00</td><td>£15.00 of the £100 budget unspent</td></tr></tfoot>
+      </table></div>
+      <div class="roi"><b>£13.94</b><p class="read">raised online for every £1 spent (£1,185 against £85), before Gift Aid.</p></div>
+    </div>
+
+    <nav class="pager" aria-label="Page navigation"><a href="#project"><small>Previous</small>The Project</a><a class="next" href="#impact"><small>Next</small>Impact &amp; Reflection</a></nav>
+  </div>
+</section>
+
+<!-- =================== IMPACT & REFLECTION (Sections D, E, F) =================== -->
+<section class="page" id="impact" aria-label="Impact and Reflection" hidden>
+  <div class="head"><div class="wrap">
+    <div><h1>Impact &amp; Reflection</h1><p class="lede">What the project achieved against its goals, what we learned, and what we would do differently.</p></div>
+    <p class="crit">Sections D and E<b>20%</b>Reflection and social impact</p>
+  </div></div>
+  <div class="wrap">
+
+    <div class="block stack">
+      <h2>Results against our objectives</h2>
+      <ol class="score">
+        <li><span class="code">O1</span><div><b>Hold a safe match by 8 November</b><span class="k">Target: match played, no serious incidents</span></div><div><span class="k">Result</span>Achieved: played on 8 November. <span class="todo">[incidents]</span></div><div><span class="k">Evidence</span>Photos, risk assessment</div></li>
+        <li><span class="code">O2</span><div><b>Raise funds</b><span class="k">Target: <span class="todo">£[target]</span></span></div><div><span class="k">Result</span>£1,185 online + £280 Gift Aid = £1,465, from 41 donations</div><div><span class="k">Evidence</span>JustGiving page, Appendix D</div></li>
+        <li><span class="code">O3</span><div><b>Raise awareness online</b><span class="k">Target: <span class="todo">[reach]</span></span></div><div><span class="k">Result</span><span class="todo">[LinkedIn impressions, video views]</span></div><div><span class="k">Evidence</span>Analytics, Appendix H</div></li>
+        <li><span class="code">O4</span><div><b>Bring TVAA FC's events back</b><span class="k">Target: a well-attended event and a lasting link</span></div><div><span class="k">Result</span><span class="todo">[attendance; plans for a return fixture?]</span></div><div><span class="k">Evidence</span>Stakeholder feedback</div></li>
+      </ol>
+      <div class="read flow">
+        <p>The average online donation was £28.90. Because TVAA receives no government or NHS funding <span class="cite">(TVAA, 2026)</span>, money raised this way pays directly for its service. We have avoided claiming outcomes we cannot measure, such as how many people now understand how TVAA is funded.</p>
+      </div>
+      <div class="quotes">
+        <blockquote><p><span class="todo">[Feedback quote from TVAA]</span></p><footer><span class="todo">[Name, role]</span>, Thames Valley Air Ambulance</footer></blockquote>
+        <blockquote><p><span class="todo">[Feedback quote from Stuart Gibson]</span></p><footer>Stuart Gibson, TVAA FC manager</footer></blockquote>
+        <blockquote><p><span class="todo">[Feedback quote from John Stirzaker]</span></p><footer>John Stirzaker, Chairman, Mindset United</footer></blockquote>
+      </div>
+      <p class="read">On Arnstein's <span class="cite">(1969)</span> ladder of participation, the people TVAA serves stayed at the informing level. They benefit from the money raised but did not shape the event. A future project could involve patients or crew in telling their own stories.</p>
+    </div>
+
+    <div class="block stack">
+      <div class="read flow">
+        <h2>Reflection</h2>
+        <p>We used Bassot's <span class="cite">(2013)</span> integrated reflective cycle because it builds theory into each reflection rather than adding it at the end. Our biggest learning came from the venue search.</p>
+      </div>
+      <ol class="cycle">
+        <li><b>Experience</b>Our first-choice venue, Thame United, had no availability. Risborough Rangers could not host on our date either.</li>
+        <li><b>Reflection on action</b>We had treated the venue as a step to tick off, not as our biggest risk. We approached venues one at a time, and each refusal cost us days.</li>
+        <li><b>Theory</b>Stakeholder positions move <span class="cite">(Olander and Landin, 2005)</span>. Venue owners had high power from the start, and we should have managed them as key players earlier.</li>
+        <li><b>Preparation</b>Next time we would approach three venues in parallel from week one and agree a fallback date with the opposition.</li>
+      </ol>
+      <div class="read flow">
+        <p>The setbacks were useful. Edmondson <span class="cite">(2023)</span> separates avoidable failures from intelligent ones that happen in new territory. Ours were partly avoidable, but they taught us to run tasks in parallel, to keep stakeholders informed when plans change, and to give one person ownership of communication with each partner.</p>
+        <p>The most surprising stakeholder was Mindset United. We first saw them as the opposition; by match week their chairman had found the venue and the referee and was one of the most important people in the project. <span class="todo">[Add a second reflection on team working, using the same four steps.]</span></p>
+      </div>
+      <h3>Skills for our careers</h3>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">Team member</th><th scope="col">Skill developed</th><th scope="col">How it helps in future</th></tr></thead>
+        <tbody>
+          <tr><td>Joel Whitworth</td><td><span class="todo">[e.g. stakeholder negotiation under time pressure]</span></td><td><span class="todo">[link to placement or career plans]</span></td></tr>
+          <tr><td><span class="todo">[Name]</span></td><td><span class="todo">[skill]</span></td><td><span class="todo">[future use]</span></td></tr>
+          <tr><td><span class="todo">[Name]</span></td><td><span class="todo">[skill]</span></td><td><span class="todo">[future use]</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="block read flow">
+      <h2>Conclusion</h2>
+      <p>In five weeks, Team 5 helped bring a TVAA FC charity match back. It raised £1,465 including Gift Aid for a charity that receives no government funding, for £85 of spending. The match happened because we kept re-planning when venues fell through and built strong relationships with TVAA FC and Mindset United. Those relationships are the project's most lasting result and the basis for TVAA FC's future events.</p>
+    </div>
+    <nav class="pager" aria-label="Page navigation"><a href="#management"><small>Previous</small>How We Managed It</a><a class="next" href="#references"><small>Next</small>References</a></nav>
+  </div>
+</section>
+
+<!-- =================== REFERENCES =================== -->
+<section class="page" id="references" aria-label="References" hidden>
+  <div class="head"><div class="wrap"><div><h1>References</h1><p class="lede">Harvard (Bath) style.</p></div></div></div>
+  <div class="wrap">
+    <div class="block refs read">
+      <p>Ackermann, F. and Eden, C., 2011. Strategic management of stakeholders: theory and practice. <i>Long Range Planning</i>, 44(3), pp.179–196.</p>
+      <p>Ackermann, F., Eden, C., Williams, T. and Howick, S., 2007. Systemic risk assessment: a case study. <i>Journal of the Operational Research Society</i>, 58(1), pp.39–51.</p>
+      <p>Arnstein, S.R., 1969. A ladder of citizen participation. <i>Journal of the American Institute of Planners</i>, 35(4), pp.216–224.</p>
+      <p>Bassot, B., 2013. <i>The reflective journal</i>. Basingstoke: Palgrave Macmillan.</p>
+      <p>Bryson, J.M., 2004. What to do when stakeholders matter: stakeholder identification and analysis techniques. <i>Public Management Review</i>, 6(1), pp.21–53.</p>
+      <p>Cancer Research UK, 2014. <i>#nomakeupselfie trend raises over £8 million for Cancer Research UK</i> [Online]. Press release, 25 March 2014.</p>
+      <p>Doran, G.T., 1981. There's a S.M.A.R.T. way to write management's goals and objectives. <i>Management Review</i>, 70(11), pp.35–36.</p>
+      <p>Edmondson, A.C., 2019. <i>The fearless organization: creating psychological safety in the workplace for learning, innovation, and growth</i>. Hoboken, NJ: Wiley.</p>
+      <p>Edmondson, A.C., 2023. <i>Right kind of wrong: the science of failing well</i>. New York: Simon &amp; Schuster.</p>
+      <p>Harrison, J.S., Bosse, D.A. and Phillips, R.A., 2010. Managing for stakeholders, stakeholder utility functions, and competitive advantage. <i>Strategic Management Journal</i>, 31(1), pp.58–74.</p>
+      <p>JustGiving, 2026. <i>Thames Valley Air Ambulance FC is fundraising for Thames Valley Air Ambulance</i> [Online]. Available from: https://www.justgiving.com/page/thames-valley-air-ambulance-fc-26 [Accessed 12 November 2026].</p>
+      <p>Kotler, P., 2020. <i>Principles of marketing</i>. Global ed. Harlow: Pearson Education.</p>
+      <p>Lengel, R.H. and Daft, R.L., 1988. The selection of communication media as an executive skill. <i>Academy of Management Executive</i>, 2(3), pp.225–232.</p>
+      <p>Maylor, H., 2021. <i>Project management</i>. 5th ed. Harlow: Pearson.</p>
+      <p>Mendelow, A.L., 1981. Environmental scanning: the impact of the stakeholder concept. <i>Proceedings of the Second International Conference on Information Systems</i>. Cambridge, MA, pp.407–418.</p>
+      <p>Olander, S. and Landin, A., 2005. Evaluation of stakeholder influence in the implementation of construction projects. <i>International Journal of Project Management</i>, 23(4), pp.321–328.</p>
+      <p>Sarasvathy, S.D., 2001. Causation and effectuation: toward a theoretical shift from economic inevitability to entrepreneurial contingency. <i>Academy of Management Review</i>, 26(2), pp.243–263.</p>
+      <p>Savage, G.T., Nix, T.W., Whitehead, C.J. and Blair, J.D., 1991. Strategies for assessing and managing organizational stakeholders. <i>Academy of Management Executive</i>, 5(2), pp.61–75.</p>
+      <p>Thames Valley Air Ambulance (TVAA), 2026. <i>About us</i> [Online]. Available from: https://www.tvairambulance.org.uk/about-us [Accessed 9 November 2026].</p>
+      <p>Tuckman, B.W., 1965. Developmental sequence in small groups. <i>Psychological Bulletin</i>, 63(6), pp.384–399.</p>
+      <p>Turner, J.R. and Müller, R., 2003. On the nature of the project as a temporary organization. <i>International Journal of Project Management</i>, 21(1), pp.1–8.</p>
+      <p>Whittington, R., Regnér, P., Angwin, D., Johnson, G. and Scholes, K., 2021. <i>Exploring strategy</i>. 12th ed. Harlow: Pearson.</p>
+    </div>
+    <nav class="pager" aria-label="Page navigation"><a href="#impact"><small>Previous</small>Impact &amp; Reflection</a><a class="next" href="#appendices"><small>Next</small>Appendices</a></nav>
+  </div>
+</section>
+
+<!-- =================== APPENDICES =================== -->
+<section class="page" id="appendices" aria-label="Appendices" hidden>
+  <div class="head"><div class="wrap"><div><h1>Appendices</h1><p class="lede">Supporting evidence referred to throughout the e-portfolio.</p></div></div></div>
+  <div class="wrap">
+    <div class="block">
+      <ol class="apps">
+        <li><span class="code">A</span><b>Community project approval form</b><span class="todo">[link PDF]</span></li>
+        <li><span class="code">B</span><b>Risk assessment</b><span class="todo">[link PDF]</span></li>
+        <li><span class="code">C</span><b>Interim update form</b><span class="todo">[link after 18 November]</span></li>
+        <li><span class="code">D</span><b>Donation evidence</b><span class="todo">[JustGiving screenshot and TVAA receipt]</span></li>
+        <li><span class="code">E</span><b>Financial statement and receipts</b><span class="todo">[pitch hire confirmation and expense claim]</span></li>
+        <li><span class="code">F</span><b>Stakeholder correspondence</b><span class="todo">[venue and Mindset United emails]</span></li>
+        <li><span class="code">G</span><b>Group contract and group log</b><span class="todo">[link PDFs]</span></li>
+        <li><span class="code">H</span><b>Social media analytics</b><span class="todo">[screenshots]</span></li>
+      </ol>
+    </div>
+    <nav class="pager" aria-label="Page navigation"><a href="#references"><small>Previous</small>References</a><a class="next" href="#home"><small>Back to</small>Home</a></nav>
+  </div>
+</section>
+</main>
+
+<footer class="site"><div class="wrap"><span>MN22024 Social Entrepreneurship Action Project, University of Bath. Team 5.</span><span>In support of Thames Valley Air Ambulance.</span></div></footer>
+
+<script>
+(function(){
+  var pages=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.menu a'));
+  var menu=document.getElementById('menu'), btn=document.querySelector('.menu-btn');
+  function show(){
+    var id=(location.hash||'#home').slice(1), el=document.getElementById(id);
+    if(!el||!el.classList.contains('page')) id='home';
+    pages.forEach(function(p){p.hidden=p.id!==id;});
+    links.forEach(function(a){ if(a.getAttribute('href')==='#'+id) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+    var t=document.querySelector('#'+id+' h1'); document.title=(id==='home'?'Kick-Off for TVAA':t.textContent)+' | SEAP E-Portfolio';
+    menu.classList.remove('open'); btn.setAttribute('aria-expanded','false');
+    window.scrollTo(0,0);
+  }
+  btn.addEventListener('click',function(){var o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',o?'true':'false');});
+  window.addEventListener('hashchange',show); show();
+})();
+</script>
+</body>
+</html>
