@@ -1069,9 +1069,12 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
     draw();
     var settled=!dragging&&Math.abs(target-pos)<0.0005&&Math.abs(vel)<0.001&&(intro>=1||reduced.matches);
     if(settled){ pos=target; draw(); last=0; }
-    else if(visible) raf=requestAnimationFrame(frame);
+    else raf=requestAnimationFrame(frame);
   }
-  function kick(){ if(!raf&&visible) raf=requestAnimationFrame(frame); }
+  /* Once started, the loop runs until the spring settles. Tying it to visibility
+     stranded the cards mid-move whenever the browser stopped reporting the stage
+     as on screen; visibility now only decides when the opening move begins. */
+  function kick(){ if(!raf) raf=requestAnimationFrame(frame); }
   function go(dir){ target=Math.round(target)+dir; kick(); }
 
   canvas.addEventListener('pointerdown',function(e){
