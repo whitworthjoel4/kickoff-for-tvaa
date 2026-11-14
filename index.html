@@ -256,69 +256,60 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
   @keyframes rise{from{transform:translateY(14px);opacity:.2}to{transform:none;opacity:1}}
 }
 
-/* ---------- home: scroll-driven story (desktop), stacked (mobile) ---------- */
-.story{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
-.story .steps{display:grid}
-.story .step{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;padding:40px max(20px,env(safe-area-inset-left)) 8px}
-.story .copy{display:flex;flex-direction:column;gap:14px;max-width:440px}
-.story .count{font-family:var(--display);font-weight:800;font-size:1.25rem;color:var(--red);font-variant-numeric:tabular-nums;letter-spacing:.04em}
-.story h2{font-size:clamp(2.2rem,3.6vw,3rem)}
-.story .copy p{color:var(--muted)}
-.story .copy a{font-family:var(--display);font-weight:700;font-size:1.2rem;letter-spacing:.02em;text-decoration:none;align-self:flex-start;border-bottom:2px solid currentColor;padding-bottom:2px}
-.story .copy a:hover{color:var(--ink)}
-.story .visual{background:var(--night);border-radius:4px;overflow:hidden;aspect-ratio:4/3;position:relative}
-.story .visual img{width:100%;height:100%;object-fit:cover}
-.story .dots{display:none}
-.v-venues{display:flex;flex-direction:column;justify-content:center;gap:2px;padding:7% 9%;color:#EEF2EF;height:100%}
-.v-venues li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:10px 0;border-bottom:1px solid #2A3530;font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,2.2vw,2rem);line-height:1}
-.v-venues li span{font-family:var(--body);font-weight:400;font-size:.9rem;color:#9DA8A2}
-.v-venues li.out b{color:#7D8C85;text-decoration:line-through;text-decoration-thickness:2px}
-.v-venues li.held b{color:#E9B04F}.v-venues li.held span{color:#E9B04F}
-.v-venues li.yes{border-bottom:0}.v-venues li.yes b{color:#FF5D68}.v-venues li.yes span{color:#FF8A92}
-.v-venues ol{list-style:none;margin:0;padding:0}
-.v-result{background:#C81B2B;color:#fff;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:8%}
-.v-result b{font-family:var(--display);font-weight:900;font-size:clamp(5rem,11vw,9.5rem);line-height:.85;font-variant-numeric:tabular-nums}
-.v-result span{font-size:1.05rem;margin-top:12px;max-width:30ch}
-.v-result dl{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:4px 36px;margin:28px 0 0;padding-top:16px;border-top:2px solid rgba(255,255,255,.7)}
-.v-result dt{font-family:var(--display);font-weight:900;font-size:2.2rem;line-height:1;grid-row:1}
-.v-result dd{margin:0;font-size:.85rem;opacity:.9;grid-row:2}
-.story .scroller{display:none}
-.story .visual.panel{aspect-ratio:auto}
-.story .visual.panel .v-venues,.story .visual.panel .v-result{min-height:340px}
-@media (min-width:901px){
-  .story{--stage:600px;position:relative}
-  .story .steps{height:var(--stage)}
-  .story .step{grid-area:1/1;grid-template-columns:minmax(340px,36%) minmax(0,1fr);gap:0;padding:0;opacity:0;visibility:hidden;transition:opacity .5s cubic-bezier(.16,1,.3,1),visibility 0s .5s}
-  .story .step.on{opacity:1;visibility:visible;transition:opacity .5s cubic-bezier(.16,1,.3,1),visibility 0s}
-  .story .copy{justify-content:center;padding:0 48px 60px max(20px,calc((100vw - 1180px)/2 + 20px));max-width:none}
-  .story .copy>*{max-width:400px}
-  .story .visual{aspect-ratio:auto;height:var(--stage);border-radius:0;display:flex;align-items:center;justify-content:center;padding:48px}
-  .story .visual>img,.story .visual>.v-venues,.story .visual>.v-result{width:100%;max-width:640px;height:100%;max-height:480px;border-radius:4px}
-  .story .visual>img{box-shadow:0 18px 50px rgba(0,0,0,.45)}
-  .story .visual>img.small{max-width:520px;max-height:390px}
-  .v-venues{background:#17201C;padding:28px 36px}
-  .story .dots{display:flex;gap:8px;position:absolute;bottom:56px;left:max(20px,calc((100vw - 1180px)/2 + 20px));z-index:3}
-  .story .dots button{appearance:none;border:0;padding:10px 0;background:none;cursor:pointer}
-  .story .dots button::before{content:"";display:block;height:4px;width:28px;background:var(--line);border-radius:2px;transition:width .3s,background-color .3s}
-  .story .dots button[aria-current="step"]::before{width:44px;background:var(--red)}
-  .story .scroller{display:block;position:absolute;top:0;right:0;height:var(--stage);width:calc(100% - max(340px,36%));overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none;z-index:2}
-  .story .scroller::-webkit-scrollbar{display:none}
-  .story .scroller div{height:var(--stage);scroll-snap-align:start;scroll-snap-stop:always}
+/* ---------- home: curved-lens carousel (the five cards) ----------
+   Ported from the 21st.dev "3d-curved-carousel": one WebGL canvas holds all the
+   cards; the middle one reads flat and the further a card travels from the centre
+   the taller and more bent it grows, with a fringe of colour split at the rim.
+   Drag, flick, arrow keys or the buttons; it settles on a spring and loops. */
+.lens{position:relative;width:100%;height:min(88vh,780px);height:min(88svh,780px);background:var(--night);overflow:hidden;isolation:isolate;outline:none;user-select:none;-webkit-user-select:none;border-top:1px solid var(--line);border-bottom:1px solid var(--line);--lens-ink:#F2F4F1}
+.lens:focus-visible{box-shadow:inset 0 0 0 3px var(--red)}
+.lens-glow{position:absolute;inset:-20%;background:radial-gradient(50% 40% at 50% 46%,rgba(255,240,220,.08),transparent 70%);pointer-events:none}
+.lens-grain{position:absolute;inset:0;opacity:.07;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.lens-scrim{position:absolute;left:0;right:0;bottom:0;height:62%;pointer-events:none;background:linear-gradient(to top,rgba(10,16,14,.92) 0%,rgba(10,16,14,.72) 34%,rgba(10,16,14,0) 100%)}
+.lens-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:pan-y}
+.lens-canvas:active{cursor:grabbing}
+.lens-top{position:absolute;left:clamp(20px,4vw,48px);right:clamp(20px,4vw,48px);top:clamp(18px,3.4vw,34px);display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-family:var(--display);font-weight:700;font-size:.95rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lens-ink);opacity:.62;pointer-events:none}
+.lens-copy{position:absolute;left:clamp(20px,4vw,48px);bottom:clamp(22px,4vw,42px);max-width:min(560px,72%);color:var(--lens-ink);pointer-events:none}
+.lens-kicker{display:block;font-family:var(--display);font-weight:700;font-size:.95rem;letter-spacing:.2em;text-transform:uppercase;color:#FF8A92;margin-bottom:10px}
+.lens-title{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,5.6vw,5rem);line-height:.9;letter-spacing:.005em;margin:0;display:block}
+.lens-line{display:block;overflow:hidden;padding-bottom:.08em}
+.lens-ch{display:inline-block;transform:translateY(105%) rotate(5deg);opacity:0;transition:transform .9s cubic-bezier(.2,.9,.1,1),opacity .6s ease}
+.lens-copy.in .lens-ch{transform:none;opacity:1}
+.lens-cap{display:block;margin-top:14px;font-size:1rem;line-height:1.5;max-width:36ch;opacity:0;transform:translateY(10px);transition:opacity .7s ease .25s,transform .7s cubic-bezier(.2,.9,.1,1) .25s}
+.lens-copy.in .lens-cap{opacity:.72;transform:none}
+.lens-go{display:inline-block;margin-top:16px;pointer-events:auto;font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.02em;color:#FF8A92;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:2px;opacity:0;transform:translateY(10px);transition:opacity .7s ease .35s,transform .7s cubic-bezier(.2,.9,.1,1) .35s}
+.lens-copy.in .lens-go{opacity:1;transform:none}
+.lens-go:hover{color:#fff}
+.lens-ctl{position:absolute;right:clamp(20px,4vw,48px);bottom:clamp(22px,4vw,42px);display:flex;flex-direction:column;align-items:flex-end;gap:14px;color:var(--lens-ink)}
+.lens-count{font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:.16em;font-variant-numeric:tabular-nums;opacity:.85}
+.lens-count i{font-style:normal;opacity:.45}
+.lens-bar{width:132px;height:2px;border-radius:2px;background:rgba(242,244,241,.18);overflow:hidden}
+.lens-bar>span{display:block;height:100%;width:100%;background:var(--lens-ink);transform-origin:0 50%;transition:transform .7s cubic-bezier(.2,.9,.1,1)}
+.lens-btns{display:flex;gap:10px}
+.lens-btn{width:46px;height:46px;border-radius:999px;display:grid;place-items:center;color:var(--lens-ink);cursor:pointer;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 10px 30px -10px rgba(0,0,0,.7);transition:transform .35s cubic-bezier(.3,1.6,.5,1),background .3s ease,border-color .3s ease}
+.lens-btn:hover{transform:translateY(-2px) scale(1.06);background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.06));border-color:rgba(255,255,255,.32)}
+.lens-btn:active{transform:scale(.94)}
+.lens-btn:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.lens-btn svg{width:18px;height:18px}
+.lens-list{list-style:none;margin:0;padding:clamp(28px,5vw,56px) max(20px,env(safe-area-inset-left));display:grid;gap:30px;color:var(--lens-ink);position:relative;z-index:1}
+.lens-list h2{font-size:clamp(1.9rem,3.4vw,2.6rem)}
+.lens-list p{margin-top:8px;color:#C7D0CB;max-width:52ch}
+.lens-list a{color:#FF8A92;font-family:var(--display);font-weight:700;font-size:1.1rem;text-decoration:none;border-bottom:2px solid currentColor}
+.lens-list .n{font-family:var(--display);font-weight:800;color:#FF5D68;letter-spacing:.04em}
+.lens.gl{height:min(88vh,780px);height:min(88svh,780px)}
+.lens.gl .lens-list{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;padding:0;margin:-1px}
+.lens:not(.gl){height:auto}
+.lens:not(.gl) .lens-top,.lens:not(.gl) .lens-copy,.lens:not(.gl) .lens-ctl,.lens:not(.gl) .lens-canvas{display:none}
+@media (max-width:640px){
+  .lens-copy{max-width:calc(100% - 40px);bottom:104px}
+  .lens-ctl{flex-direction:row;align-items:center;left:clamp(20px,4vw,48px);justify-content:space-between}
+  .lens-bar{width:84px}
+  .lens-top{font-size:.8rem;letter-spacing:.12em;justify-content:flex-end}
+  .lens-top b{display:none}
 }
-@media (min-width:901px) and (prefers-reduced-motion:reduce){.story .step,.story .step.on{transition:none}.story .dots button::before{transition:none}}
-
-.v-cause{background:#17201C;color:#EEF2EF;height:100%;display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:1fr auto;gap:24px 32px;align-items:center;padding:8%}
-.story .v-cause img{width:132px;height:132px;object-fit:contain}
-.v-cause dl{margin:0;display:flex;flex-direction:column;gap:18px}
-.v-cause dt{font-family:var(--display);font-weight:900;font-size:clamp(3rem,5.5vw,4.6rem);line-height:.85;color:#FF5D68;font-variant-numeric:tabular-nums}
-.v-cause dd{margin:4px 0 0;font-size:1rem;color:#C7D0CB}
-.v-cause p{grid-column:1/-1;font-size:.9rem;color:#9DA8A2;border-top:1px solid #2A3530;padding-top:14px}
-@media (max-width:520px){.v-cause{grid-template-columns:minmax(0,1fr)}.story .v-cause img{width:88px;height:88px}}
-.story .visual.portrait{aspect-ratio:auto;display:flex;justify-content:center;padding:20px}
-.story .visual.portrait img{width:auto;max-width:100%;height:auto;max-height:70vh;object-fit:contain}
-@media (min-width:901px){
-  .story .visual.portrait img{height:100%;max-height:504px;width:auto;max-width:100%;box-shadow:0 18px 50px rgba(0,0,0,.45)}
-  .story .visual>.v-cause{width:100%;max-width:640px;height:100%;max-height:480px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){
+  .lens-ch,.lens-cap,.lens-go,.lens-bar>span,.lens-btn{transition:opacity .2s ease}
+  .lens-ch,.lens-cap,.lens-go{transform:none}
 }
 
 /* ---------- home: picture-free opening screen + 3D helicopter fly-through ---------- */
@@ -397,48 +388,28 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
     </div>
   </div>
 
-  <section class="story" aria-label="The project in five steps">
-    <div class="steps">
-      <article class="step on" aria-labelledby="st1">
-        <div class="copy"><p class="count" aria-hidden="true">01 / 05</p><h2 id="st1">A lifesaving charity with no state funding</h2><p>Thames Valley Air Ambulance was called out 3,302 times last year, yet it receives no government or NHS funding. Every mission depends on donations.</p></div>
-        <div class="visual panel"><div class="v-cause">
-          <img src="img/tvaa-mark.png" alt="Thames Valley Air Ambulance logo" loading="lazy">
-          <dl><div><dt>3,302</dt><dd>call-outs last year</dd></div><div><dt>£0</dt><dd>from the government or the NHS</dd></div></dl>
-          <p>Berkshire, Buckinghamshire and Oxfordshire</p></div></div>
-      </article>
-      <article class="step" aria-labelledby="st2">
-        <div class="copy"><p class="count" aria-hidden="true">02 / 05</p><h2 id="st2">Six venues, one pitch</h2><p>Five grounds fell through or couldn't host on our date. Mindset United's chairman secured the 4G pitch at Kingsbrook, and we moved kick-off to 4pm.</p><a href="#management">See how we managed it</a></div>
-        <div class="visual panel"><div class="v-venues"><ol aria-label="Venues approached, in order">
-          <li class="out"><b>Thame United</b><span>No availability</span></li>
-          <li class="out"><b>Risborough Rangers</b><span>Couldn’t host on 8 Nov</span></li>
-          <li class="out"><b>Kidlington</b><span>Approached</span></li>
-          <li class="out"><b>AVD</b><span>Approached</span></li>
-          <li class="held"><b>Long Crendon</b><span>Briefly held, 2pm</span></li>
-          <li class="yes"><b>Kingsbrook 4G</b><span>Confirmed, 4pm</span></li>
-        </ol></div></div>
-      </article>
-      <article class="step" aria-labelledby="st3">
-        <div class="copy"><p class="count" aria-hidden="true">03 / 05</p><h2 id="st3">A campaign with one destination</h2><p>Our own matchday graphics, a LinkedIn post and videos from Frank Warren and Chloe Kelly, all sending people to a single JustGiving page.</p><a href="#project">See the campaign</a></div>
-        <div class="visual portrait"><img src="img/matchday-graphic.jpg" alt="Red matchday graphic with two players and the word Matchday" loading="lazy"></div>
-      </article>
-      <article class="step" aria-labelledby="st4">
-        <div class="copy"><p class="count" aria-hidden="true">04 / 05</p><h2 id="st4">Sunday 8 November, 4pm</h2><p>TVAA FC and Mindset United lined up at Kingsbrook for a minute’s silence, then played under the floodlights. Afterwards both clubs and their supporters gathered at Rivets to watch the football together.</p><a href="#project">See the match</a></div>
-        <div class="visual"><img src="img/minute-silence.jpg" alt="Both teams observe a minute's silence around the centre circle" loading="lazy"></div>
-      </article>
-      <article class="step" aria-labelledby="st5">
-        <div class="copy"><p class="count" aria-hidden="true">05 / 05</p><h2 id="st5">What it raised</h2><p>Every £1 we spent brought in about £14 in online donations, and the match gave TVAA FC its first community event in years.</p><a href="#impact">See the impact</a></div>
-        <div class="visual panel"><div class="v-result"><b data-count="1465">£1,465</b><span>raised for Thames Valley Air Ambulance, including £280 Gift Aid</span>
-          <dl><dt>41</dt><dd>donations</dd><dt>£85</dt><dd>spent</dd><dt>£1,185</dt><dd>donated online</dd></dl></div></div>
-      </article>
+  <section class="lens" id="lens" tabindex="0" role="region" aria-roledescription="carousel" aria-label="The project in five cards">
+    <div class="lens-glow" aria-hidden="true"></div>
+    <canvas class="lens-canvas" aria-hidden="true"></canvas>
+    <div class="lens-scrim" aria-hidden="true"></div>
+    <div class="lens-grain" aria-hidden="true"></div>
+    <div class="lens-top" aria-hidden="true"><b>Kick-Off for TVAA</b><span>Drag to explore</span></div>
+    <div class="lens-copy" aria-hidden="true"></div>
+    <div class="lens-ctl">
+      <span class="lens-count" aria-hidden="true">01 <i>/ 05</i></span>
+      <span class="lens-bar" aria-hidden="true"><span style="transform:scaleX(.2)"></span></span>
+      <div class="lens-btns">
+        <button type="button" class="lens-btn" data-go="-1" aria-label="Previous card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="lens-btn" data-go="1" aria-label="Next card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
     </div>
-    <div class="scroller" aria-hidden="true"><div></div><div></div><div></div><div></div><div></div></div>
-    <div class="dots">
-      <button type="button" aria-label="Step 1: the charity" aria-current="step"></button>
-      <button type="button" aria-label="Step 2: the venue"></button>
-      <button type="button" aria-label="Step 3: the campaign"></button>
-      <button type="button" aria-label="Step 4: the match"></button>
-      <button type="button" aria-label="Step 5: the result"></button>
-    </div>
+    <ol class="lens-list">
+      <li><p class="n">01 / 05</p><h2>A lifesaving charity with no state funding</h2><p>Thames Valley Air Ambulance was called out 3,302 times last year, yet it receives no government or NHS funding. Every mission depends on donations.</p><p><a href="#project">Why we chose TVAA</a></p></li>
+      <li><p class="n">02 / 05</p><h2>Six venues, one pitch</h2><p>Five grounds fell through or couldn't host on our date. Mindset United's chairman secured the 4G pitch at Kingsbrook, and we moved kick-off to 4pm.</p><p><a href="#management">See how we managed it</a></p></li>
+      <li><p class="n">03 / 05</p><h2>A campaign with one destination</h2><p>Our own matchday graphics, a LinkedIn post and videos from Frank Warren and Chloe Kelly, all sending people to a single JustGiving page.</p><p><a href="#project">See the campaign</a></p></li>
+      <li><p class="n">04 / 05</p><h2>Sunday 8 November, 4pm</h2><p>TVAA FC and Mindset United lined up at Kingsbrook for a minute's silence, then played under the floodlights. Afterwards both clubs and their supporters gathered at Rivets to watch the football together.</p><p><a href="#project">See the match</a></p></li>
+      <li><p class="n">05 / 05</p><h2>What it raised</h2><p>Every £1 we spent brought in about £14 in online donations, and the match gave TVAA FC its first community event in years.</p><p><a href="#impact">See the impact</a></p></li>
+    </ol>
   </section>
 
   <div class="wrap">
@@ -855,28 +826,288 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
   btn.addEventListener('click',function(){var o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',o?'true':'false');});
   window.addEventListener('hashchange',show); show();
 })();
+/* The five cards, drawn through a curved lens on one WebGL canvas. Ported from the
+   21st.dev "3d-curved-carousel" to plain JS: same vertex bend, colour split at the rim
+   and spring physics, with this site's own palette, type and photographs. Without
+   WebGL, or with reduced motion asked for, the list underneath is shown as it stands. */
 (function(){
-  var story=document.querySelector('.story'); if(!story) return;
-  var steps=[].slice.call(story.querySelectorAll('.step')), dots=[].slice.call(story.querySelectorAll('.dots button'));
-  var sc=story.querySelector('.scroller'), cur=0, counted=false;
-  var desk=window.matchMedia('(min-width:901px)'), still=window.matchMedia('(prefers-reduced-motion:reduce)');
-  function countUp(){
-    var el=story.querySelector('[data-count]'); if(counted||still.matches) return; counted=true;
-    var end=+el.dataset.count, t0=null;
-    function f(t){ if(!t0) t0=t; var k=Math.min(1,(t-t0)/1100), v=Math.round(end*(1-Math.pow(1-k,3)));
-      el.textContent='£'+v.toLocaleString('en-GB'); if(k<1) requestAnimationFrame(f); }
-    requestAnimationFrame(f);
+  var root=document.querySelector('.lens'); if(!root) return;
+  var canvas=root.querySelector('.lens-canvas'), copy=root.querySelector('.lens-copy');
+  var countEl=root.querySelector('.lens-count'), barEl=root.querySelector('.lens-bar>span');
+  var SLIDES=[
+    {kicker:'The cause',title:'A lifesaving charity',cap:'Thames Valley Air Ambulance was called out 3,302 times last year, yet it receives no government or NHS funding.',href:'#project',go:'Why we chose TVAA',panel:'cause'},
+    {kicker:'The obstacle',title:'Six venues, one pitch',cap:'Five grounds fell through. Mindset United’s chairman secured the 4G pitch at Kingsbrook, and we moved kick-off to 4pm.',href:'#management',go:'See how we managed it',panel:'venues'},
+    {kicker:'The campaign',title:'One destination',cap:'Our own matchday graphics, a LinkedIn post and ambassador videos, all sending people to a single JustGiving page.',href:'#project',go:'See the campaign',src:'img/matchday-graphic.jpg'},
+    {kicker:'Sunday 8 November',title:'Kick-off, 4pm',cap:'TVAA FC played Mindset United under the Kingsbrook floodlights, then both clubs gathered at Rivets to watch the football.',href:'#project',go:'See the match',src:'img/match-floodlights.jpg'},
+    {kicker:'The result',title:'What it raised',cap:'Every £1 we spent brought in about £14 in online donations, and the match gave TVAA FC its first community event in years.',href:'#impact',go:'See the impact',panel:'result'}
+  ];
+  var n=SLIDES.length;
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+  var gl=null;
+  try{ gl=canvas.getContext('webgl',{premultipliedAlpha:true,antialias:true,alpha:true}); }catch(e){ gl=null; }
+  if(!gl) return;
+
+  /* ---- panels painted to a 2D canvas, then used as textures ---- */
+  var PW=900,PH=1125,PAD=120;
+  function ctx2d(){ var c=document.createElement('canvas'); c.width=PW; c.height=PH; return c; }
+  function disp(px,w){ return (w||800)+' '+px+'px "Big Shoulders Display","Arial Narrow",sans-serif'; }
+  function body(px,w){ return (w||400)+' '+px+'px Literata,Georgia,serif'; }
+  function fit(c,txt,max,mk,px){ var s=px; c.font=mk(s); while(s>14&&c.measureText(txt).width>max){ s-=2; c.font=mk(s); } return s; }
+  function paintCause(logo){
+    var cv=ctx2d(), c=cv.getContext('2d');
+    c.fillStyle='#17201C'; c.fillRect(0,0,PW,PH);
+    if(logo){ c.drawImage(logo,PAD,150,170,170); }
+    c.fillStyle='#FF5D68'; c.font=disp(148,900); c.textBaseline='alphabetic';
+    c.fillText('3,302',PAD,480);
+    c.fillStyle='#C7D0CB'; c.font=body(30); c.fillText('call-outs last year',PAD,530);
+    c.fillStyle='#FF5D68'; c.font=disp(148,900); c.fillText('£0',PAD,700);
+    c.fillStyle='#C7D0CB'; c.font=body(30); c.fillText('from the government or the NHS',PAD,750);
+    c.strokeStyle='#2A3530'; c.lineWidth=2; c.beginPath(); c.moveTo(PAD,880); c.lineTo(PW-PAD,880); c.stroke();
+    c.fillStyle='#9DA8A2'; c.font=body(27); c.fillText('Berkshire, Buckinghamshire',PAD,930); c.fillText('and Oxfordshire',PAD,968);
+    return cv;
   }
-  function set(i){
-    if(i===cur) return; cur=i;
-    steps.forEach(function(s,j){s.classList.toggle('on',j===i);});
-    dots.forEach(function(d,j){ if(j===i) d.setAttribute('aria-current','step'); else d.removeAttribute('aria-current'); });
-    if(i===steps.length-1) countUp();
+  function paintVenues(){
+    var cv=ctx2d(), c=cv.getContext('2d'), rows=[
+      ['Thame United','No availability','out'],['Risborough Rangers','Couldn’t host on 8 Nov','out'],
+      ['Kidlington','Approached','out'],['AVD','Approached','out'],
+      ['Long Crendon','Briefly held, 2pm','held'],['Kingsbrook 4G','Confirmed, 4pm','yes']
+    ];
+    c.fillStyle='#17201C'; c.fillRect(0,0,PW,PH);
+    c.textBaseline='alphabetic';
+    var top=190, gap=140, inner=PW-PAD*2;
+    for(var i=0;i<rows.length;i++){
+      var r=rows[i], y=top+gap*i, name=r[0], st=r[1], kind=r[2];
+      c.fillStyle='#9DA8A2'; c.font=body(24);
+      if(kind==='held') c.fillStyle='#E9B04F'; if(kind==='yes') c.fillStyle='#FF8A92';
+      var sw=c.measureText(st).width; c.fillText(st,PW-PAD-sw,y);
+      c.fillStyle=kind==='out'?'#7D8C85':(kind==='held'?'#E9B04F':'#FF5D68');
+      var px=fit(c,name,inner-sw-30,function(s){return disp(s,800)},62);
+      c.fillText(name,PAD,y);
+      if(kind==='out'){ c.strokeStyle='#7D8C85'; c.lineWidth=4; var w=c.measureText(name).width;
+        c.beginPath(); c.moveTo(PAD,y-px*0.24); c.lineTo(PAD+w,y-px*0.24); c.stroke(); }
+      if(i<rows.length-1){ c.strokeStyle='#2A3530'; c.lineWidth=2;
+        c.beginPath(); c.moveTo(PAD,y+40); c.lineTo(PW-PAD,y+40); c.stroke(); }
+    }
+    return cv;
   }
-  sc.addEventListener('scroll',function(){ if(!desk.matches) return;
-    set(Math.max(0,Math.min(steps.length-1,Math.round(sc.scrollTop/sc.clientHeight)))); },{passive:true});
-  dots.forEach(function(d,i){ d.addEventListener('click',function(){
-    sc.scrollTo({top:i*sc.clientHeight,behavior:still.matches?'auto':'smooth'}); set(i); }); });
+  function paintResult(){
+    var cv=ctx2d(), c=cv.getContext('2d');
+    c.fillStyle='#C8102E'; c.fillRect(0,0,PW,PH);
+    c.textBaseline='alphabetic'; c.fillStyle='#fff';
+    fit(c,'£1,465',PW-PAD*2,function(s){return disp(s,900)},210); c.fillText('£1,465',PAD,520);
+    c.font=body(32); c.fillText('raised for Thames Valley',PAD,600); c.fillText('Air Ambulance, including',PAD,644); c.fillText('£280 Gift Aid',PAD,688);
+    c.strokeStyle='rgba(255,255,255,.75)'; c.lineWidth=3; c.beginPath(); c.moveTo(PAD,780); c.lineTo(PW-PAD,780); c.stroke();
+    var st=[['41','donations'],['£85','spent'],['£1,185','online']], x=PAD;
+    for(var i=0;i<st.length;i++){
+      c.font=disp(62,900); c.fillStyle='#fff'; c.fillText(st[i][0],x,870);
+      var w1=c.measureText(st[i][0]).width;
+      c.font=body(24); c.fillStyle='rgba(255,255,255,.88)'; c.fillText(st[i][1],x,912);
+      x+=Math.max(w1,c.measureText(st[i][1]).width)+58;
+    }
+    return cv;
+  }
+  function loadImg(src){ return new Promise(function(res,rej){ var im=new Image(); im.decoding='async';
+    im.onload=function(){res(im)}; im.onerror=rej; im.src=src; }); }
+  function fontsReady(){
+    if(!document.fonts||!document.fonts.load) return Promise.resolve();
+    return Promise.all([document.fonts.load('900 148px "Big Shoulders Display"'),
+      document.fonts.load('800 62px "Big Shoulders Display"'),
+      document.fonts.load('400 30px Literata')]).catch(function(){});
+  }
+
+  /* ---- shaders ---- */
+  var VERT='attribute vec2 aPos;'+
+    'uniform vec2 uRes;uniform vec2 uSize;uniform float uX;uniform float uBend;uniform float uVel;uniform float uIntro;uniform float uLift;'+
+    'varying vec2 vUv;varying float vX;'+
+    'void main(){'+
+    'vec2 p=vec2(uX+(aPos.x-.5)*uSize.x,(aPos.y-.5)*uSize.y);'+
+    'p.y-=(1.-uIntro)*uSize.y*.9;'+
+    'vec2 n=p/(uRes*.5);'+
+    'float x=clamp(n.x,-1.4,1.4);'+
+    'n.y*=1.+uBend*x*x;'+
+    'n.y+=uVel*.05*sin(aPos.x*3.14159)*(aPos.y-.5);'+
+    'n.x*=1.-.06*uBend*x*x;n.y+=uLift;'+
+    'vUv=aPos;vX=x;'+
+    'gl_Position=vec4(n,0.,1.);}';
+  var FRAG='precision highp float;'+
+    'uniform sampler2D uTex;uniform vec2 uSize;uniform float uAspect;uniform float uVel;uniform float uIntro;uniform float uShift;uniform float uReady;'+
+    'varying vec2 vUv;varying float vX;'+
+    'float box(vec2 q,vec2 b,float r){vec2 d=abs(q)-b+r;return length(max(d,0.))+min(max(d.x,d.y),0.)-r;}'+
+    'void main(){'+
+    'float a=uSize.x/uSize.y;vec2 uv=vUv-.5;'+
+    'if(uAspect>a)uv.x*=a/uAspect;else uv.y*=uAspect/a;'+
+    'uv=uv/1.12+.5;uv.x+=uShift;'+
+    'float ca=(.0012+.0045*vX*vX)*(1.+abs(uVel)*1.2);'+
+    'vec3 c=vec3(texture2D(uTex,uv+vec2(ca,0.)).r,texture2D(uTex,uv).g,texture2D(uTex,uv-vec2(ca,0.)).b);'+
+    'c=mix(vec3(.07,.09,.08),c,uReady);'+
+    'c*=1.-.42*min(1.,vX*vX);'+
+    'float d=box((vUv-.5)*uSize,uSize*.5,14.);'+
+    'float rim=smoothstep(-5.,0.,d);'+
+    'c+=rim*.10;'+
+    'c+=.07*smoothstep(.55,1.,vUv.y)*(1.-abs(vX));'+
+    'float al=smoothstep(.75,-.75,d)*uIntro;'+
+    'gl_FragColor=vec4(c*al,al);}';
+  function shader(type,src){ var s=gl.createShader(type); gl.shaderSource(s,src); gl.compileShader(s); return s; }
+  function gridMesh(sx,sy){ var out=[];
+    for(var y=0;y<sy;y++) for(var x=0;x<sx;x++){
+      var x0=x/sx,x1=(x+1)/sx,y0=y/sy,y1=(y+1)/sy;
+      out.push(x0,y0,x1,y0,x0,y1,x0,y1,x1,y0,x1,y1); }
+    return new Float32Array(out); }
+
+  /* ---- motion ---- */
+  function wrap(i,m){ return m>0?((i%m)+m)%m:0; }
+  function offsetOf(i,pos,m){ if(m<=0) return 0; return wrap(i-pos+m/2,m)-m/2; }
+  function restFor(pos,v,max){ max=max||3; return Math.round(pos+Math.max(-max,Math.min(max,v*0.18))); }
+  function springStep(pos,vel,target,dt,omega){ omega=omega||11;
+    var a=(target-pos)*omega*omega-vel*2*omega, v=vel+a*dt; return [pos+v*dt,v]; }
+  function cardSize(w,h){ var cw=Math.min(w<640?w*0.58:w*0.24,h*0.40); return [Math.round(cw),Math.round(cw*1.25)]; }
+  function pad2(k){ return k<10?'0'+k:String(k); }
+
+  var prog=gl.createProgram();
+  gl.attachShader(prog,shader(gl.VERTEX_SHADER,VERT));
+  gl.attachShader(prog,shader(gl.FRAGMENT_SHADER,FRAG));
+  gl.linkProgram(prog);
+  if(!gl.getProgramParameter(prog,gl.LINK_STATUS)) return;
+  gl.useProgram(prog);
+  var mesh=gridMesh(36,12), buf=gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER,buf); gl.bufferData(gl.ARRAY_BUFFER,mesh,gl.STATIC_DRAW);
+  var loc=gl.getAttribLocation(prog,'aPos');
+  gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  var u={}, keys=['uRes','uSize','uX','uBend','uVel','uIntro','uTex','uAspect','uShift','uReady','uLift'];
+  for(var k=0;k<keys.length;k++) u[keys[k]]=gl.getUniformLocation(prog,keys[k]);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);
+  root.classList.add('gl');
+
+  var tex=SLIDES.map(function(s){
+    var t=gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D,t);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,1,1,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([18,26,22,255]));
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    var e={t:t,aspect:0.8,ready:false};
+    var src=s.src?loadImg(s.src):fontsReady().then(function(){
+      if(s.panel==='venues') return paintVenues();
+      if(s.panel==='result') return paintResult();
+      return loadImg('img/tvaa-mark.png').then(paintCause,function(){return paintCause(null);});
+    });
+    src.then(function(img){
+      gl.bindTexture(gl.TEXTURE_2D,t);
+      gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);
+      e.aspect=(img.naturalWidth||img.width)/(img.naturalHeight||img.height);
+      e.ready=true; kick();
+    },function(){});
+    return e;
+  });
+
+  var W=1,H=1,cw=1,ch=1,gap=1,pos=0,vel=0,target=0;
+  var intro=reduced.matches?1:0, introStart=-1;
+  var dragging=false,dragX=0,dragPos=0,lastX=0,lastT=0,flick=0;
+  var raf=0,last=0,visible=false,current=-1;
+
+  function resize(w,h){
+    if(w<2||h<2) return;
+    W=w; H=h;
+    var dpr=Math.min(2,window.devicePixelRatio||1);
+    canvas.width=Math.round(W*dpr); canvas.height=Math.round(H*dpr);
+    var cs=cardSize(W,H); cw=cs[0]; ch=cs[1]; gap=cw*0.14;
+    gl.viewport(0,0,canvas.width,canvas.height); kick();
+  }
+  function draw(){
+    gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform2f(u.uRes,W,H); gl.uniform2f(u.uSize,cw,ch); gl.uniform1f(u.uBend,0.55);
+    gl.uniform1f(u.uVel,reduced.matches?0:Math.max(-1,Math.min(1,vel*0.12)));
+    gl.uniform1f(u.uLift,W<640?0.36:0.26);
+    var step=cw+gap;
+    for(var i=0;i<n;i++){
+      var d=offsetOf(i,pos,n), x=d*step;
+      if(Math.abs(x)>W*0.5+step*1.5) continue;
+      var t=Math.max(0,Math.min(1,(intro-Math.abs(d)*0.12)/0.6)), e=1-Math.pow(1-t,3);
+      gl.bindTexture(gl.TEXTURE_2D,tex[i].t);
+      gl.uniform1f(u.uX,x); gl.uniform1f(u.uIntro,e);
+      gl.uniform1f(u.uAspect,tex[i].aspect); gl.uniform1f(u.uReady,tex[i].ready?1:0);
+      gl.uniform1f(u.uShift,Math.max(-0.05,Math.min(0.05,-d*0.035)));
+      gl.drawArrays(gl.TRIANGLES,0,mesh.length/2);
+    }
+  }
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function chars(text){
+    var words=text.split(' '), out='', j=0;
+    for(var w=0;w<words.length;w++){
+      out+='<span style="display:inline-block;white-space:nowrap">';
+      for(var i=0;i<words[w].length;i++){
+        out+='<span class="lens-ch" style="transition-delay:'+(60+j*24)+'ms">'+esc(words[w].charAt(i))+'</span>'; j++;
+      }
+      out+='</span>'; if(w<words.length-1){ out+=' '; j++; }
+    }
+    return out;
+  }
+  function setCopy(i){
+    var s=SLIDES[i];
+    copy.className='lens-copy';
+    copy.innerHTML='<span class="lens-kicker">'+esc(s.kicker)+'</span>'+
+      '<h2 class="lens-title"><span class="lens-line">'+chars(s.title)+'</span></h2>'+
+      '<span class="lens-cap">'+esc(s.cap)+'</span>'+
+      '<a class="lens-go" href="'+s.href+'">'+esc(s.go)+'</a>';
+    countEl.innerHTML=pad2(i+1)+' <i>/ '+pad2(n)+'</i>';
+    barEl.style.transform='scaleX('+((i+1)/n)+')';
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ copy.className='lens-copy in'; }); });
+  }
+  function frame(now){
+    raf=0;
+    var dt=last?Math.min(0.05,(now-last)/1000):1/60; last=now;
+    if(intro<1){ if(introStart<0) introStart=now;
+      intro=Math.min(1.5,(now-introStart)/1100); if(intro>=1.5) intro=1; }
+    if(!dragging){
+      if(reduced.matches){ pos=target; vel=0; }
+      else { var r=springStep(pos,vel,target,dt); pos=r[0]; vel=r[1]; }
+    }
+    var idx=wrap(Math.round(pos),n);
+    if(idx!==current){ current=idx; setCopy(idx); }
+    draw();
+    var settled=!dragging&&Math.abs(target-pos)<0.0005&&Math.abs(vel)<0.001&&(intro>=1||reduced.matches);
+    if(settled){ pos=target; draw(); last=0; }
+    else if(visible) raf=requestAnimationFrame(frame);
+  }
+  function kick(){ if(!raf&&visible) raf=requestAnimationFrame(frame); }
+  function go(dir){ target=Math.round(target)+dir; kick(); }
+
+  canvas.addEventListener('pointerdown',function(e){
+    if(e.button!==0) return;
+    dragging=true; dragX=lastX=e.clientX; lastT=e.timeStamp; dragPos=pos; flick=0;
+    canvas.setPointerCapture(e.pointerId); kick();
+  });
+  canvas.addEventListener('pointermove',function(e){
+    if(!dragging) return;
+    var step=cw+gap, p=dragPos-(e.clientX-dragX)/step, dts=Math.max(1,e.timeStamp-lastT)/1000;
+    flick=flick*0.6+(-(e.clientX-lastX)/step/dts)*0.4; vel=flick;
+    lastX=e.clientX; lastT=e.timeStamp; pos=p; kick();
+  });
+  function up(){ if(!dragging) return; dragging=false; target=restFor(pos,flick); vel=flick; kick(); }
+  canvas.addEventListener('pointerup',up);
+  canvas.addEventListener('pointercancel',up);
+  root.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight') go(1); else if(e.key==='ArrowLeft') go(-1); else return;
+    e.preventDefault(); e.stopPropagation();
+  });
+  var btns=root.querySelectorAll('.lens-btn');
+  for(var b=0;b<btns.length;b++) (function(el){
+    el.addEventListener('click',function(){ go(+el.getAttribute('data-go')); });
+  })(btns[b]);
+  reduced.addEventListener('change',function(){ kick(); });
+
+  if(window.ResizeObserver) new ResizeObserver(function(en){
+    var r=en[0].contentRect; resize(r.width,r.height);
+  }).observe(root);
+  else { resize(root.clientWidth,root.clientHeight);
+    window.addEventListener('resize',function(){ resize(root.clientWidth,root.clientHeight); }); }
+  if(window.IntersectionObserver) new IntersectionObserver(function(en){
+    visible=en[0].isIntersecting; if(visible) kick();
+  }).observe(root);
+  else { visible=true; kick(); }
+  setCopy(0); current=0;
 })();
 
 
