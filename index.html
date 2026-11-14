@@ -333,6 +333,8 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
 .intro .go i{display:block;width:2px;height:38px;background:linear-gradient(#FF5D68,rgba(255,93,104,0));transform-origin:top}
 .intro.flying .go{opacity:0;transition:opacity .4s}
 #sky{position:fixed;inset:0;width:100%;height:100%;z-index:40;pointer-events:none}
+.skip-flight{position:fixed;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));z-index:41;appearance:none;border:1px solid rgba(244,245,241,.55);background:rgba(15,23,20,.72);color:#F4F5F1;font-family:var(--display);font-weight:700;font-size:1.1rem;letter-spacing:.03em;padding:10px 20px;border-radius:3px;cursor:pointer}
+.skip-flight:hover{background:#0F1714;border-color:#F4F5F1}
 @media (prefers-reduced-motion:no-preference){.intro .go i{animation:drop 1.8s cubic-bezier(.6,0,.2,1) infinite}}
 @keyframes drop{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
 </style>
@@ -884,7 +886,7 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
   var home=document.getElementById('home'), intro=home&&home.querySelector('.intro'), hero=home&&home.querySelector('.hero');
   if(!intro||!hero) return;
   if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-  var T=null, played=false, running=false, raf=0, started=0, touchY=null, stage=null, target=0;
+  var T=null, played=false, running=false, raf=0, started=0, touchY=null, stage=null, target=0, skipBtn=null;
   import('./vendor/three.module.min.js').then(function(m){ T=m; }).catch(function(){ T=null; });
 
   function buildHeli(){
@@ -975,6 +977,8 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
     var dur=W<=760?5600:6600, photo=hero.querySelector('.photo img');
     var up0=new T.Vector3(0,1,0), fwd=new T.Vector3(), nrm=new T.Vector3(), up=new T.Vector3(), xa=new T.Vector3(), za=new T.Vector3(), mx=new T.Matrix4(), q=new T.Quaternion(), first=true;
     intro.classList.add('flying'); played=true; running=true; started=performance.now();
+    skipBtn=document.createElement('button'); skipBtn.type='button'; skipBtn.className='skip-flight'; skipBtn.textContent='Skip';
+    skipBtn.addEventListener('click',function(){ finish(true); }); document.body.appendChild(skipBtn);
     stage={renderer:renderer,canvas:canvas,scene:scene,photo:photo};
     function ez(k){ return k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2; }
     function frame(now){
@@ -1005,12 +1009,15 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
       stage.scene.traverse(function(o){ if(o.geometry) o.geometry.dispose(); if(o.material){ if(o.material.map) o.material.map.dispose(); o.material.dispose(); } });
       stage.renderer.dispose(); stage.canvas.remove(); stage=null;
     }
+    if(skipBtn){skipBtn.remove();skipBtn=null;}
     intro.classList.remove('flying');
     if(land) window.scrollTo({top:target,behavior:'instant'});
   }
   function atTop(){ return !home.hidden && intro.getBoundingClientRect().top>-10; }
+  /* Scrolling never skips the flight: a trackpad or mouse keeps sending scroll events for a
+     second or more after one swipe. Skipping is the Skip button or the Escape key only. */
   function onIntent(e,down){
-    if(running){ e.preventDefault(); if(down && performance.now()-started>1200) finish(true); return; }
+    if(running){ e.preventDefault(); return; }
     if(played||!down||!atTop()) return;
     if(!T){ played=true; return; }
     if(start()) e.preventDefault(); else played=true;
