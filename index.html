@@ -838,6 +838,8 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
 
 <script>
 (function(){
+  /* Always open at the top: otherwise a refresh reopens part-way down and skips the opening screen. */
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
   var pages=[].slice.call(document.querySelectorAll('section.page'));
   var links=[].slice.call(document.querySelectorAll('.menu a'));
   var menu=document.getElementById('menu'), btn=document.querySelector('.menu-btn');
