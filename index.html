@@ -50,8 +50,9 @@ p{margin:0}
 .crest{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none;margin-right:auto}
 .crest .b{width:36px;height:36px;border-radius:50%;overflow:hidden;background:#fff;flex:none}
 .crest .b img{width:100%;height:100%;object-fit:contain}
+.crest .b.t{background:#fff}.crest .b.t img{object-fit:cover;transform:scale(1.04)}
 .crest .b.m{background:#0F2A22}.crest .b.m img{object-fit:cover;transform:scale(1.15)}
-.crest strong{font-family:var(--display);font-size:1.45rem;font-weight:800;letter-spacing:.01em}
+.crest strong{font-family:var(--display);font-size:1.45rem;font-weight:800;letter-spacing:.01em;white-space:nowrap}
 .menu{display:flex;gap:2px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
 .menu a{display:block;color:#C7D0CB;text-decoration:none;font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.02em;padding:16px 11px 13px;border-bottom:3px solid transparent;margin-bottom:-3px}
 .menu a:hover{color:#fff}
@@ -64,6 +65,48 @@ p{margin:0}
   .menu a{padding:10px 4px;border-bottom:0;margin:0}
   .menu a[aria-current="page"]{box-shadow:inset 3px 0 0 #fff;padding-left:12px}
 }
+
+/* ---------- liquid glass navbar (desktop) ----------
+   The bar stops being a solid block and becomes two floating frosted pills.
+   A soft white blob sits behind the links; moving between pages sends it
+   travelling, and a second, slower blob trails it so the pair stretch into a
+   neck, pinch into a droplet and merge again under an SVG gooey filter. */
+@media (min-width:901px){
+  .bar{background:transparent;border-bottom:0;padding:14px 0;pointer-events:none;margin-bottom:-78px}
+  main .head .wrap{padding-top:132px}
+  #home .intro{min-height:100vh;min-height:100svh}
+  .bar .wrap{gap:14px;min-height:0;align-items:center;flex-wrap:nowrap;max-width:1340px}
+  .crest,.nav-pill{pointer-events:auto;
+    background:rgba(255,255,255,.58);-webkit-backdrop-filter:blur(26px) saturate(185%);backdrop-filter:blur(26px) saturate(185%);
+    border:1px solid rgba(255,255,255,.62);border-radius:999px;color:#18211D;
+    box-shadow:0 18px 40px -16px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.95),inset 0 -8px 18px -10px rgba(255,255,255,.75)}
+  .crest{padding:6px 20px 6px 6px;gap:9px;flex:none}
+  .nav-pill{flex:0 1 auto;min-width:0}
+  .crest .b{width:34px;height:34px}
+  .nav-pill{position:relative;padding:5px;overflow:hidden}
+  .nav-pill::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;
+    background:linear-gradient(168deg,rgba(255,255,255,.55),rgba(255,255,255,0) 46%)}
+  .menu{position:relative;z-index:2;gap:0;flex-wrap:nowrap}
+  .menu a{padding:9px 15px 8px;border-bottom:0;margin:0;border-radius:999px;white-space:nowrap;
+    font-size:1.08rem;color:#18211D;transition:color .3s ease}
+  .menu a:hover{color:#0F1714}
+  .menu a[aria-current="page"]{color:#0F1714;border-bottom-color:transparent}
+  .crest strong{color:#18211D}
+  .goo{position:absolute;left:5px;top:5px;right:5px;bottom:5px;z-index:1;pointer-events:none;
+    filter:url(#nav-goo);opacity:.78}
+  .goo i{position:absolute;top:0;height:100%;border-radius:999px;background:#fff;display:block;
+    transform-origin:50% 50%;will-change:left,width}
+  .goo i.a{transition:left .52s cubic-bezier(.22,1,.36,1),width .52s cubic-bezier(.22,1,.36,1)}
+  .goo i.b{transition:left .78s cubic-bezier(.34,1.3,.42,1),width .62s cubic-bezier(.22,1,.36,1)}
+  .ripple{position:absolute;z-index:1;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:999px;
+    pointer-events:none;background:radial-gradient(circle,rgba(44,90,68,.35),rgba(44,90,68,0) 70%);opacity:0}
+  .ripple.go{animation:nav-ripple .62s cubic-bezier(.2,.8,.3,1) forwards}
+  @keyframes nav-ripple{from{transform:scale(.4);opacity:.85}to{transform:scale(9);opacity:0}}
+}
+@media (min-width:901px) and (max-width:1340px){ .crest strong{display:none} .crest{padding:6px} }
+@media (min-width:901px) and (max-width:1120px){ .menu a{padding:8px 10px 7px;font-size:.92rem} }
+@media (max-width:900px){ .goo,.ripple{display:none} }
+@media (prefers-reduced-motion:reduce){ .goo i{transition:none} .ripple.go{animation:none} }
 
 /* ---------- hero (home) ---------- */
 .hero{position:relative;background:var(--night);color:#fff;overflow:hidden}
@@ -116,8 +159,8 @@ figcaption{font-size:.9rem;color:var(--muted);line-height:1.45}
 .contents a:hover b{color:var(--red)}
 @media (max-width:760px){.contents{grid-template-columns:minmax(0,1fr)}.contents a,.contents a+a{padding-left:0;border-left:0}}
 
-.gazebos{display:grid;grid-template-columns:repeat(3,128px);gap:10px}
-.gazebos img{width:128px;height:128px;object-fit:cover;border-radius:3px;border:1px solid var(--line);background:var(--surface);padding:4px}
+.gazebos{display:grid;grid-template-columns:repeat(3,minmax(0,128px));gap:10px;justify-content:start}
+.gazebos img{width:100%;aspect-ratio:1;height:auto;object-fit:cover;border-radius:3px;border:1px solid var(--line);background:var(--surface);padding:4px}
 @media (max-width:420px){.gazebos{grid-template-columns:repeat(3,minmax(0,1fr))}.gazebos img{width:100%;height:auto;aspect-ratio:1}}
 
 .objectives{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:2px solid var(--ink)}
@@ -328,19 +371,53 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
 .skip-flight:hover{background:#0F1714;border-color:#F4F5F1}
 @media (prefers-reduced-motion:no-preference){.intro .go i{animation:drop 1.8s cubic-bezier(.6,0,.2,1) infinite}}
 @keyframes drop{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* ---------- The Project: video that expands as you scroll ----------
+   After the 21st.dev "scroll-expansion-hero": a small video sits over a backdrop;
+   scrolling grows the video, parts the title to either side and fades the backdrop.
+   Rebuilt without taking over the scroll wheel: the block is simply taller than
+   the screen and its stage sticks while you pass through it. */
+.expand{position:relative;height:230vh;background:var(--night)}
+.expand-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center;color:#fff}
+.expand-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:calc(1 - var(--p,0))}
+.expand-shade{position:absolute;inset:0;background:rgba(10,16,14,.28)}
+.expand-media{position:relative;z-index:1;height:calc(46vh + var(--p,0)*40vh);aspect-ratio:9/16;max-width:92vw;border-radius:18px;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.55);background:#000}
+.expand-media video{width:100%;height:100%;object-fit:cover;display:block}
+.expand-dim{position:absolute;inset:0;background:rgba(0,0,0,calc(.42 - var(--p,0)*.42));pointer-events:none}
+.expand-title{position:absolute;z-index:2;left:0;right:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:.05em;pointer-events:none;mix-blend-mode:difference;
+  font-family:var(--display);font-weight:900;font-size:clamp(3rem,9vw,8rem);line-height:.86;text-align:center;white-space:nowrap}
+.expand-title .l{transform:translateX(calc(var(--p,0)*-120vw))}
+.expand-title .r{transform:translateX(calc(var(--p,0)*120vw))}
+.expand-hint{position:absolute;z-index:2;bottom:28px;left:0;right:0;text-align:center;font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;opacity:calc(.85 - var(--p,0)*2.2)}
+.expand-sound{position:absolute;z-index:3;bottom:26px;left:50%;transform:translateX(-50%);appearance:none;cursor:pointer;border:1px solid rgba(255,255,255,.7);background:rgba(15,23,20,.78);color:#fff;font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.03em;padding:11px 22px;border-radius:999px}
+.expand-sound:hover{background:#0F1714;border-color:#fff}
+.expand-sound:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+@media (max-width:640px){ .expand-media{height:calc(44vh + var(--p,0)*34vh)} }
+@media (prefers-reduced-motion:reduce){
+  .expand{height:auto}
+  .expand-stage{position:relative;height:auto;padding:56px 20px 84px}
+  .expand-media{height:min(78vh,640px)} .expand-dim,.expand-title,.expand-hint{display:none} .expand-bg{opacity:.5}
+}
 </style>
 </head>
 <body>
 
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <filter id="nav-goo" x="-30%" y="-60%" width="160%" height="220%" color-interpolation-filters="sRGB">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur"/>
+    <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -11"/>
+  </filter>
+</defs></svg>
+
 <header class="bar">
   <div class="wrap">
     <a class="crest" href="#home" aria-label="Kick-Off for TVAA, home">
-      <span class="b"><img src="img/tvaa-logo.jpg" alt=""></span>
+      <span class="b t"><img src="img/tvaa-mark.png" alt=""></span>
       <span class="b m"><img src="img/mindset-badge.jpg" alt=""></span>
       <strong>Kick-Off for TVAA</strong>
     </a>
     <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
-    <nav aria-label="E-portfolio sections"><ul class="menu" id="menu">
+    <nav class="nav-pill" aria-label="E-portfolio sections"><span class="goo" aria-hidden="true"><i class="b"></i><i class="a"></i></span><span class="ripple" aria-hidden="true"></span><ul class="menu" id="menu">
       <li><a href="#home">Home</a></li>
       <li><a href="#project">The Project</a></li>
       <li><a href="#management">How We Managed It</a></li>
@@ -406,7 +483,7 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
     <ol class="lens-list">
       <li><p class="n">01 / 05</p><h2>A lifesaving charity with no state funding</h2><p>Thames Valley Air Ambulance was called out 3,302 times last year, yet it receives no government or NHS funding. Every mission depends on donations.</p><p><a href="#project">Why we chose TVAA</a></p></li>
       <li><p class="n">02 / 05</p><h2>Six venues, one pitch</h2><p>Five grounds fell through or couldn't host on our date. Mindset United's chairman secured the 4G pitch at Kingsbrook, and we moved kick-off to 4pm.</p><p><a href="#management">See how we managed it</a></p></li>
-      <li><p class="n">03 / 05</p><h2>A campaign with one destination</h2><p>Our own matchday graphics, a LinkedIn post and videos from Frank Warren and Chloe Kelly, all sending people to a single JustGiving page.</p><p><a href="#project">See the campaign</a></p></li>
+      <li><p class="n">03 / 05</p><h2>A campaign with one destination</h2><p>Our own matchday graphics, a LinkedIn post and a video from Frank Warren, all sending people to a single JustGiving page.</p><p><a href="#project">See the campaign</a></p></li>
       <li><p class="n">04 / 05</p><h2>Sunday 8 November, 4pm</h2><p>TVAA FC and Mindset United lined up at Kingsbrook for a minute's silence, then played under the floodlights. Afterwards both clubs and their supporters gathered at Rivets to watch the football together.</p><p><a href="#project">See the match</a></p></li>
       <li><p class="n">05 / 05</p><h2>What it raised</h2><p>Every £1 we spent brought in about £14 in online donations, and the match gave TVAA FC its first community event in years.</p><p><a href="#impact">See the impact</a></p></li>
     </ol>
@@ -504,15 +581,28 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
           <figure><img src="img/matchday-graphic.jpg" alt="Red matchday graphic with two players and the word Matchday"><figcaption>Matchday graphic.</figcaption></figure>
         </div>
         <div class="read flow">
-          <p>To reach beyond our own networks, we secured two short videos from well-known sports figures: boxing promoter Frank Warren and England footballer Chloe Kelly. Each asked viewers to come down and donate. Social media is targeted, immediate and easy to share, but engagement has to be earned <span class="cite">(Kotler, 2020)</span>, and recognisable faces gave people a reason to stop and watch.</p>
+          <p>To reach beyond our own networks, we secured a short video from a well-known sports figure, boxing promoter Frank Warren, who asked viewers to come down and donate. Social media is targeted, immediate and easy to share, but engagement has to be earned <span class="cite">(Kotler, 2020)</span>, and a recognisable face gave people a reason to stop and watch.</p>
         </div>
-        <div class="pair" style="max-width:640px">
-          <div class="phone" data-video="frank"><b>Frank Warren</b><span class="todo">[video to add]</span></div>
-          <div class="phone" data-video="chloe"><b>Chloe Kelly</b><span class="todo">[video to add]</span></div>
-        </div>
-        <p class="read">We also published a LinkedIn post written so team members, the University of Bath and TVAA could be tagged and reshare it. <span class="todo">[Add a screenshot of the post and its reach.]</span></p>
+        <p class="read">We also published a LinkedIn post written so team members, the University of Bath and TVAA could be tagged and reshare it. <span class="todo">[Add a screenshot of the post and its reach.]</span> Frank Warren's video is shown in full below.</p>
       </div>
     </article>
+  </div>
+
+  <section class="expand" aria-label="Frank Warren's video message for the match">
+    <div class="expand-stage">
+      <img class="expand-bg" src="img/campaign-backdrop.jpg" alt="" loading="lazy">
+      <div class="expand-shade" aria-hidden="true"></div>
+      <div class="expand-media">
+        <video src="media/frank-warren.mp4" poster="media/frank-warren-poster.jpg" muted loop playsinline preload="metadata" aria-label="Frank Warren asks people to come to the match and donate"></video>
+        <div class="expand-dim" aria-hidden="true"></div>
+      </div>
+      <div class="expand-title" aria-hidden="true"><span class="l">Frank Warren</span><span class="r">backs the match</span></div>
+      <p class="expand-hint" aria-hidden="true">Keep scrolling to expand</p>
+      <button type="button" class="expand-sound" hidden>Play with sound</button>
+    </div>
+  </section>
+
+  <div class="wrap">
 
     <article class="activity">
       <div class="n" aria-hidden="true">3</div>
@@ -837,7 +927,7 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
   var SLIDES=[
     {kicker:'The cause',title:'A lifesaving charity',cap:'Thames Valley Air Ambulance was called out 3,302 times last year, yet it receives no government or NHS funding.',href:'#project',go:'Why we chose TVAA',panel:'cause'},
     {kicker:'The obstacle',title:'Six venues, one pitch',cap:'Five grounds fell through. Mindset United’s chairman secured the 4G pitch at Kingsbrook, and we moved kick-off to 4pm.',href:'#management',go:'See how we managed it',panel:'venues'},
-    {kicker:'The campaign',title:'One destination',cap:'Our own matchday graphics, a LinkedIn post and ambassador videos, all sending people to a single JustGiving page.',href:'#project',go:'See the campaign',src:'img/matchday-graphic.jpg'},
+    {kicker:'The campaign',title:'One destination',cap:'Our own matchday graphics, a LinkedIn post and an ambassador video, all sending people to a single JustGiving page.',href:'#project',go:'See the campaign',src:'img/matchday-graphic.jpg'},
     {kicker:'Sunday 8 November',title:'Kick-off, 4pm',cap:'TVAA FC played Mindset United under the Kingsbrook floodlights, then both clubs gathered at Rivets to watch the football.',href:'#project',go:'See the match',src:'img/match-floodlights.jpg'},
     {kicker:'The result',title:'What it raised',cap:'Every £1 we spent brought in about £14 in online donations, and the match gave TVAA FC its first community event in years.',href:'#impact',go:'See the impact',panel:'result'}
   ];
@@ -1208,7 +1298,7 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
     for(var i=0;i<=8;i++){var th=i*Math.PI/4; pts.push(new T.Vector3(cx-r*Math.sin(th),cy-r*Math.cos(th),-.6+i*.2));}
     pts.push(new T.Vector3(cx-r*1.7,yb-.25,1.4),new T.Vector3(-hx*.45,-hy*.42,2.4),new T.Vector3(-hx*.8,-hy*.6,3),new T.Vector3(-hx-8*S-3,-hy*.3,3.6));
     var curve=new T.CatmullRomCurve3(pts,false,'centripetal'), f1=11/(pts.length-1);
-    var bar=document.querySelector('.bar').offsetHeight, from=window.scrollY;
+    var barEl=document.querySelector('.bar'), bar=getComputedStyle(barEl).marginBottom.charAt(0)==='-'?0:barEl.offsetHeight, from=window.scrollY;
     target=Math.max(from,hero.getBoundingClientRect().top+from-bar);
     var dur=W<=760?5600:6600, photo=hero.querySelector('.photo img');
     var up0=new T.Vector3(0,1,0), fwd=new T.Vector3(), nrm=new T.Vector3(), up=new T.Vector3(), xa=new T.Vector3(), za=new T.Vector3(), mx=new T.Matrix4(), q=new T.Quaternion(), first=true;
@@ -1267,6 +1357,74 @@ footer.site .wrap{padding-block:26px;display:flex;justify-content:space-between;
   });
   window.addEventListener('hashchange',function(){ if(running) finish(false); });
   window.addEventListener('resize',function(){ if(running) finish(true); });
+})();
+
+/* Liquid blob behind the navigation. Two blobs chase the current page's link at
+   different speeds; under the gooey filter they stretch, pinch into a droplet
+   and merge. Desktop only, and still when reduced motion is asked for. */
+(function(){
+  var pill=document.querySelector('.nav-pill'); if(!pill) return;
+  var menu=document.getElementById('menu'), goo=pill.querySelector('.goo');
+  var A=goo.querySelector('i.a'), B=goo.querySelector('i.b'), rip=pill.querySelector('.ripple');
+  var wide=window.matchMedia('(min-width:901px)'), still=window.matchMedia('(prefers-reduced-motion:reduce)');
+  var at=null;
+  function target(){ return menu.querySelector('a[aria-current="page"]'); }
+  function place(instant){
+    if(!wide.matches) return;
+    var a=target(); if(!a){ goo.style.opacity='0'; return; }
+    goo.style.opacity='';
+    var x=a.offsetLeft, w=a.offsetWidth, moved=at!==null&&Math.abs(x-at)>1;
+    if(instant||still.matches||!moved){
+      A.style.transition=B.style.transition='none';
+      A.style.left=B.style.left=x+'px'; A.style.width=B.style.width=w+'px';
+      void A.offsetWidth; A.style.transition=B.style.transition='';
+    } else {
+      /* stretch on the way, then settle */
+      var from=at, span=Math.abs(x-from), grow=Math.min(w*0.55,span*0.5);
+      A.style.left=x+'px'; A.style.width=w+'px';
+      B.style.width=(w+grow)+'px';
+      B.style.left=(Math.min(from,x)+(x>from?0:-grow*0.3))+'px';
+      setTimeout(function(){ B.style.left=x+'px'; B.style.width=w+'px'; },90);
+      rip.style.left=(x+w/2)+'px'; rip.classList.remove('go'); void rip.offsetWidth; rip.classList.add('go');
+    }
+    at=x;
+  }
+  new MutationObserver(function(){ place(false); })
+    .observe(menu,{subtree:true,attributes:true,attributeFilter:['aria-current']});
+  window.addEventListener('resize',function(){ place(true); });
+  wide.addEventListener('change',function(){ at=null; place(true); });
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){ place(true); });
+  place(true);
+})();
+
+/* Scroll-expanding video on The Project. Progress comes from how far the tall block
+   has travelled past the top of the screen, so nothing takes over the scroll wheel. */
+(function(){
+  var sec=document.querySelector('.expand'); if(!sec) return;
+  var stage=sec.querySelector('.expand-stage'), vid=sec.querySelector('video'), btn=sec.querySelector('.expand-sound');
+  var still=window.matchMedia('(prefers-reduced-motion:reduce)'), ticking=false, loud=false;
+  function update(){
+    ticking=false;
+    var r=sec.getBoundingClientRect(), span=r.height-window.innerHeight;
+    var p=still.matches?1:(span>0?Math.max(0,Math.min(1,-r.top/(span*0.72))):0);
+    stage.style.setProperty('--p',p.toFixed(4));
+    btn.hidden=!(p>0.97)||loud;
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  window.addEventListener('hashchange',function(){ setTimeout(update,60); });
+  btn.addEventListener('click',function(){
+    loud=true; vid.muted=false; vid.loop=false; vid.controls=true; vid.currentTime=0;
+    var q=vid.play(); if(q&&q.catch) q.catch(function(){});
+    btn.hidden=true; vid.focus();
+  });
+  if(window.IntersectionObserver) new IntersectionObserver(function(en){
+    if(en[0].isIntersecting){ if(!loud&&!still.matches){ var q=vid.play(); if(q&&q.catch) q.catch(function(){}); } }
+    else vid.pause();
+  },{threshold:0.05}).observe(sec);
+  if(still.matches){ vid.controls=true; vid.muted=false; vid.loop=false; loud=true; }
+  update();
 })();
 </script>
 </body>
