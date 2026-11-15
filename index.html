@@ -643,6 +643,11 @@ html.has-ribbon .roi.panel::before,html.has-ribbon .tst.panel::before{background
 .tst-role{margin:6px 0 0;font-size:.92rem;color:var(--pb-mute)}
 .tst-quote{margin:26px 0 0;padding:0;border:0;font-size:1.22rem;line-height:1.55;color:#DCEBF4;min-height:7.2em}
 .tst-quote.is-todo{color:#F1D58A}
+.tst-quote{height:9.3em;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-right:14px;scrollbar-width:thin;scrollbar-color:rgba(182,223,245,.45) transparent}
+.tst-quote::-webkit-scrollbar{width:6px}
+.tst-quote::-webkit-scrollbar-thumb{background:rgba(182,223,245,.45);border-radius:99px}
+.tst-quote.scrolls{-webkit-mask-image:linear-gradient(#000 calc(100% - 34px),transparent);mask-image:linear-gradient(#000 calc(100% - 34px),transparent);padding-bottom:30px}
+.tst-quote:focus-visible{outline:2px solid var(--pb);outline-offset:6px}
 .tst-quote .w{display:inline-block;white-space:pre}
 .tst-ctl{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .tst-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(182,223,245,.34);background:rgba(182,223,245,.08);color:#fff;display:grid;place-items:center;cursor:pointer;padding:0;transition:background .25s ease,border-color .25s ease}
@@ -788,6 +793,16 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
 .gazebos img:nth-child(3){--dx:1;--dr:11deg;z-index:1}
 .gazebos img:hover{translate:0 -14px;scale:1.07;z-index:5;border-color:var(--pb);box-shadow:0 26px 50px rgba(0,0,0,.65),0 0 0 1px var(--pb)}
 @media (max-width:520px){.gazebos{height:236px;--sx:88px}.gazebos img,.gazebos img:nth-child(2){width:122px;margin-left:-61px}}
+
+/* ---- two-activity layout ---- */
+.engine.panel.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.engine.panel.two>div{padding-right:36px}
+.engine.panel>div small{display:block;font-size:.84rem;color:var(--pb);margin-bottom:6px}
+.engine.panel.two>div b{font-size:2.3rem}
+.engine.panel.two>div span{font-size:1rem;line-height:1.55;max-width:46ch}
+@media (max-width:900px){.engine.panel.two{grid-template-columns:minmax(0,1fr)}.engine.panel.two>div{padding-right:0}}
+h3.sub{font-weight:400;font-size:clamp(1.6rem,2.4vw,2rem);margin-top:10px}
+.activity.cont{border-top:0;padding-top:0}
 </style>
 </head>
 <body>
@@ -854,7 +869,7 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
     <div class="block stack">
       <p class="ack"><strong>Generative AI acknowledgement.</strong> We acknowledge that this work is our own, and we used <span class="todo">[name and version of tool] ([publisher], [URL]) to [one sentence describing how it was used]</span>.</p>
       <nav class="contents" aria-label="Contents">
-        <a href="#project"><b>The Project</b><span>The four activities, why we chose them and how they fit together (Section B)</span></a>
+        <a href="#project"><b>The Project</b><span>The two activities, why we chose them and how they fit together (Section B)</span></a>
         <a href="#management"><b>How We Managed It</b><span>Planning, team, stakeholders, risk and money (Section C)</span></a>
         <a href="#impact"><b>Impact &amp; Reflection</b><span>Results against our goals, what we learned and what comes next (Sections D and E)</span></a>
       </nav>
@@ -878,10 +893,10 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
     </div>
     <ol class="lens-list">
       <li><p class="n">01 / 05</p><h2>A lifesaving charity with no state funding</h2><p>Thames Valley Air Ambulance was called out 3,302 times last year, yet it receives no government or NHS funding. Every mission depends on donations.</p><p><a href="#project">Why we chose TVAA</a></p></li>
-      <li><p class="n">02 / 05</p><h2>Six venues, one pitch</h2><p>Five grounds fell through or couldn't host on our date. Mindset United's manager secured the 4G pitch at Kingsbrook, and we moved kick-off to 4pm.</p><p><a href="#management">See how we managed it</a></p></li>
+      <li><p class="n">02 / 05</p><h2>Six venues, one pitch</h2><p>We approached six venues before one worked. Mindset United's manager secured the 4G pitch at Kingsbrook, and we moved kick-off to 4pm.</p><p><a href="#management">See how we managed it</a></p></li>
       <li><p class="n">03 / 05</p><h2>A campaign with one destination</h2><p>Our own matchday graphics, a LinkedIn post and a video from Frank Warren, all sending people to a single JustGiving page.</p><p><a href="#project">See the campaign</a></p></li>
       <li><p class="n">04 / 05</p><h2>Sunday 8 November, 4pm</h2><p>TVAA FC and Mindset United lined up at Kingsbrook for a minute's silence, then played under the floodlights. Afterwards both clubs and their supporters gathered at Rivets to watch the football together.</p><p><a href="#project">See the match</a></p></li>
-      <li><p class="n">05 / 05</p><h2>What it raised</h2><p>Every £1 we spent brought in about £14 in online donations, and the match gave TVAA FC its first community event in years.</p><p><a href="#impact">See the impact</a></p></li>
+      <li><p class="n">05 / 05</p><h2>What it raised</h2><p>Every £1 we spent brought in about £14 in online donations, and the match brought both clubs and their supporters together for the day.</p><p><a href="#impact">See the impact</a></p></li>
     </ol>
   </section>
 
@@ -891,7 +906,7 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
         <h2>Why Thames Valley Air Ambulance</h2>
         <p>Thames Valley Air Ambulance (TVAA) brings critical care to the scene of emergencies across Berkshire, Buckinghamshire and Oxfordshire. Its purpose is “to give everybody within our community the best chance of surviving and recovering from an emergency” <span class="cite">(TVAA, 2026)</span>. It was called out 3,302 times last year, yet it receives no government or NHS funding and relies on public donations <span class="cite">(TVAA, 2026)</span>.</p>
         <p>We came to TVAA through family. One of our team had been to a TVAA FC charity event when he was younger, and had heard the side had not been able to put on events for the last few years. That gave the project a social purpose beyond a single donation: help bring TVAA FC's community events back.</p>
-        <p>A sport-based event suited both the charity and our resources. TVAA FC already had players, kit and a following; we could add organisation, promotion and project management. Social entrepreneurship applies business methods to social problems, and this project let us do that with a real charity and real deadlines.</p>
+        <p>A sport-based event suited both the charity and our resources. TVAA FC already had players, kit and a following; we could add organisation, promotion and project management. Social entrepreneurship combines resources in new ways to create social value <span class="cite">(Mair and Martí, 2006)</span>, and this project let us do that with a real charity and real deadlines.</p>
       </div>
       <figure>
         <div class="gazebos">
@@ -906,12 +921,12 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
     <div class="block stack">
       <div class="read flow">
         <h2>Our objectives</h2>
-        <p>We set objectives using the SMART criteria <span class="cite">(Doran, 1981)</span> and tied each to TVAA's mission to protect, save and revive lives <span class="cite">(Whittington et al., 2021)</span>. The same codes are used to report results on the Impact &amp; Reflection page.</p>
+        <p>We set objectives using the SMART criteria <span class="cite">(Doran, 1981)</span> and tied each to TVAA's purpose <span class="cite">(TVAA, 2026)</span>, because objectives should follow from an organisation's mission <span class="cite">(Whittington et al., 2020)</span>. The same codes are used to report results on the Impact &amp; Reflection page.</p>
       </div>
       <ol class="objectives">
         <li><span class="code">O1</span><b>Hold a safe charity match by 8 November 2026</b><p>A full 11-a-side game at a suitable venue, with a qualified referee and a completed risk assessment.</p></li>
         <li><span class="code">O2</span><b>Raise <span class="todo">£[target from approval form]</span> through JustGiving</b><p>One donation page, promoted through every channel and open before and after the match.</p></li>
-        <li><span class="code">O3</span><b>Reach <span class="todo">[target]</span> people online</b><p>Matchday graphics, ambassador videos and a LinkedIn post explaining why TVAA depends on donations.</p></li>
+        <li><span class="code">O3</span><b>Reach <span class="todo">[target]</span> people online</b><p>Matchday graphics, an ambassador video and a LinkedIn post explaining why TVAA depends on donations.</p></li>
         <li><span class="code">O4</span><b>Bring TVAA FC's events back</b><p>Re-engage the TVAA FC squad and build a relationship with Mindset United that can lead to future fixtures.</p></li>
       </ol>
     </div>
@@ -1071,19 +1086,17 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
 <!-- =================== THE PROJECT (Section B) =================== -->
 <section class="page" id="project" aria-label="The Project" hidden>
   <div class="head"><div class="wrap">
-    <div><h1>The Project</h1><p class="lede">Four activities built to feed each other: a campaign that sent people to a match, a match that sent people to the donation page, and a gathering that kept the community together afterwards.</p></div>
+    <div><h1>The Project</h1><p class="lede">Two activities built to feed each other: a charity football match, and a digital campaign that filled the touchline and sent people to one donation page.</p></div>
     <p class="crit">Section B<b>25%</b>Activities</p>
   </div></div>
   <div class="wrap">
     <div class="block stack">
-      <h2>How the activities fit together</h2>
-      <div class="engine panel" role="list">
-        <div role="listitem"><b>Campaign</b><span>Graphics, ambassador videos and LinkedIn build awareness</span></div>
-        <div role="listitem"><b>Match</b><span>Free entry on 8 November turns awareness into attendance</span></div>
-        <div role="listitem"><b>Donate</b><span>Every post and the matchday point to one JustGiving page</span></div>
-        <div role="listitem"><b>Gather</b><span>Players and supporters stay together after the final whistle</span></div>
+      <h2>How the two activities fit together</h2>
+      <div class="engine panel two" role="list">
+        <div role="listitem"><small>Activity 1</small><b>The charity match</b><span>A free-entry game on 8 November, followed by both clubs and their supporters gathering at Rivets. It turned awareness into attendance and gave the campaign its photographs and its story.</span></div>
+        <div role="listitem"><small>Activity 2</small><b>The digital campaign</b><span>Our own matchday graphics, an ambassador video and a LinkedIn post, all pointing to one JustGiving page. It gave the match its crowd and kept donations open before and after the day.</span></div>
       </div>
-      <p class="read">Each activity produced content or attention for the next. The match gave the campaign its photos and story, and the campaign gave the match its crowd. A single event on its own would have raised money once; linking it to an online campaign extended its reach before and after the day.</p>
+      <p class="read">Each activity produced content or attention for the other. A single event on its own would have raised money once; linking it to an online campaign extended its reach before and after the day. We describe each activity below with the objectives it served.</p>
     </div>
 
     <article class="activity">
@@ -1093,6 +1106,8 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
         <div class="read flow">
           <p>TVAA FC played Mindset United on Sunday 8 November 2026 on the floodlit 4G pitch at The Kingsbrook School, Aylesbury. Kick-off was 4pm, entry was free, and the game was refereed by an official arranged through Mindset United. It fell on Remembrance Sunday, so both teams held a minute's silence before kick-off.</p>
           <p>We built the event on resources that already existed. TVAA FC had a squad, kit and a supporter base, and Mindset United's manager had access to a venue and a referee. This follows the effectuation logic of starting from “who I am, what I know and whom I know” rather than a fixed plan <span class="cite">(Sarasvathy, 2001)</span>. It made an ambitious event achievable for a student team in five weeks.</p>
+          <h3 class="sub">After the final whistle</h3>
+          <p>After the game, players and supporters from both clubs gathered at Rivets Sports and Social Club in Aylesbury to watch the football together. This extended the community side of the day. Treating Mindset United as partners rather than just opponents builds the trust that leads to future fixtures <span class="cite">(Harrison, Bosse and Phillips, 2010)</span>.</p>
         </div>
       </div>
     </article>
@@ -1121,16 +1136,16 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
     <article class="activity">
       <div class="n" aria-hidden="true">2</div>
       <div class="stack">
-        <div><h2>The digital campaign</h2><p class="serves">Serves objective O3</p></div>
+        <div><h2>The digital campaign</h2><p class="serves">Serves objectives O2 and O3</p></div>
         <div class="read flow">
-          <p>We designed our own matchday graphics in TVAA's red and white so every post looked like part of one campaign. Not-for-profit marketing works best when it puts the purpose first and tells a story about why the cause matters <span class="cite">(Kotler, 2020)</span>, so our posts led with TVAA's reliance on donations rather than just the fixture details.</p>
+          <p>We designed our own matchday graphics in TVAA's red and white so every post looked like part of one campaign. Not-for-profit marketing works best when it puts the purpose first and tells a story about why the cause matters <span class="cite">(Kotler and Armstrong, 2020)</span>, so our posts led with TVAA's reliance on donations rather than just the fixture details.</p>
         </div>
         <div class="pair">
           <figure><img src="img/promo-poster.jpg" alt="Promotional poster showing Sunday 08.11, The Kingsbrook School 4G, 4pm kick-off, free entry"><figcaption>Promotional poster with date, venue and kick-off.</figcaption></figure>
           <figure><img src="img/matchday-graphic.jpg" alt="Red matchday graphic with two players and the word Matchday"><figcaption>Matchday graphic.</figcaption></figure>
         </div>
         <div class="read flow">
-          <p>To reach beyond our own networks, we secured a short video from a well-known sports figure, boxing promoter Frank Warren, who asked viewers to come down and donate. Social media is targeted, immediate and easy to share, but engagement has to be earned <span class="cite">(Kotler, 2020)</span>, and a recognisable face gave people a reason to stop and watch.</p>
+          <p>To reach beyond our own networks, we secured a short video from a well-known sports figure, boxing promoter Frank Warren, who asked viewers to come down and donate. Social media is targeted, immediate and easy to share, but engagement has to be earned <span class="cite">(Kotler and Armstrong, 2020)</span>, and a recognisable face gave people a reason to stop and watch.</p>
         </div>
         <p class="read">We also published a LinkedIn post written so team members, the University of Bath and TVAA could be tagged and reshare it. <span class="todo">[Add a screenshot of the post and its reach.]</span> Frank Warren's video is shown in full below.</p>
       </div>
@@ -1153,10 +1168,10 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
 
   <div class="wrap">
 
-    <article class="activity">
-      <div class="n" aria-hidden="true">3</div>
+    <article class="activity cont">
+      <div class="n" aria-hidden="true"></div>
       <div class="stack">
-        <div><h2>One donation page</h2><p class="serves">Serves objective O2</p></div>
+        <div><h3 class="sub">One donation page</h3><p class="serves">Activity 2, continued. Serves objective O2</p></div>
         <div class="read flow">
           <p>All fundraising ran through a single <a href="https://www.justgiving.com/page/thames-valley-air-ambulance-fc-26" target="_blank" rel="noopener">JustGiving page</a>. One clear call to action mattered more than extra channels. When Cancer Research UK's #nomakeupselfie trend spread in 2014, donations only took off once the charity gave people a simple way to give <span class="cite">(Cancer Research UK, 2014)</span>. Every graphic and video ended with the same instruction to donate via the link.</p>
           <p>JustGiving claimed Gift Aid automatically on eligible donations, adding £280 to the total at no cost to donors.</p>
@@ -1164,15 +1179,6 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
       </div>
     </article>
 
-    <article class="activity">
-      <div class="n" aria-hidden="true">4</div>
-      <div class="stack">
-        <div><h2>Together after the match</h2><p class="serves">Serves objective O4</p></div>
-        <div class="read flow">
-          <p>After the game, players and supporters from both clubs gathered at Rivets Sports and Social Club in Aylesbury to watch the football together. This extended the community side of the day. Treating Mindset United as partners rather than just opponents builds the trust that leads to future fixtures <span class="cite">(Harrison, Bosse and Phillips, 2010)</span>.</p>
-        </div>
-      </div>
-    </article>
 
     <nav class="pager" aria-label="Page navigation"><a href="#home"><small>Previous</small>Home</a><a class="next" href="#management"><small>Next</small>How We Managed It</a></nav>
   </div>
@@ -1181,7 +1187,7 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
 <!-- =================== MANAGEMENT (Section C) =================== -->
 <section class="page" id="management" aria-label="How We Managed It" hidden>
   <div class="head"><div class="wrap">
-    <div><h1>How We Managed It</h1><p class="lede">We planned in four phases, managed scope, time, cost and quality, and kept re-planning as venues fell through.</p></div>
+    <div><h1>How We Managed It</h1><p class="lede">We planned in four phases, managed time, cost and risk, and kept re-planning as venue options changed.</p></div>
     <p class="crit">Section C<b>25%</b>Project management</p>
   </div></div>
   <div class="wrap">
@@ -1189,7 +1195,7 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
     <div class="block stack">
       <div class="read flow">
         <h2>Planning in four phases</h2>
-        <p>A project is a unique, temporary activity with limited resources and a fixed timeframe, set up to deliver beneficial change <span class="cite">(Turner and Müller, 2003)</span>. We used Maylor's <span class="cite">(2021)</span> four phases to structure ours: define it, design it, do it and develop it. We split the work into four packages so each had a clear owner: venue and logistics, players and opposition, promotion and fundraising, and evaluation and the e-portfolio.</p>
+        <p>A project is a unique, temporary activity with limited resources and a fixed timeframe, set up to deliver beneficial change <span class="cite">(Turner and Müller, 2003)</span>. We used Maylor and Turner's <span class="cite">(2022)</span> four phases to structure ours: define it, design it, do it and develop it. We split the work into four packages so each had a clear owner: venue and logistics, players and opposition, promotion and fundraising, and evaluation and the e-portfolio. The timeline below shows the plan as it ran: the venue search overran into match week, and the develop phase in weeks 7 to 11 covered evaluation, the interim update and this e-portfolio.</p>
       </div>
       <div class="gantt-wrap panel">
         <div class="gantt" role="img" aria-label="Project timeline across teaching weeks 1 to 11. Define weeks 1 to 2, design weeks 2 to 4, venue search weeks 2 to 6, promotion weeks 3 to 6, match in week 6, develop weeks 7 to 11. Milestones in weeks 4, 8 and 11.">
@@ -1209,7 +1215,7 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
     <div class="block stack">
       <div class="read flow">
         <h2>Coordinating the team</h2>
-        <p>We agreed a group contract at the start and kept a group log of meetings and decisions. Roles were set out in a RACI matrix <span class="cite">(Maylor, 2021)</span>, so it was clear who did the work, who signed it off, who was consulted and who was kept informed.</p>
+        <p>We agreed a group contract at the start and kept a group log of meetings and decisions. Roles were set out in a RACI matrix <span class="cite">(Maylor and Turner, 2022)</span>, so it was clear who did the work, who signed it off, who was consulted and who was kept informed.</p>
       </div>
       <div class="tbl"><table>
         <thead><tr><th scope="col">Work package</th><th scope="col">Responsible</th><th scope="col">Accountable</th><th scope="col">Consulted</th><th scope="col">Informed</th></tr></thead>
@@ -1247,7 +1253,7 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
             <div class="q"><h4>Keep satisfied</h4><div class="chips"><span class="chip">University</span></div></div>
             <div class="q key"><h4>Key players</h4><div class="chips"><span class="chip">TVAA</span><span class="chip">Stuart Gibson</span><span class="chip moved">Mindset United</span><span class="chip moved">Kingsbrook School</span><span class="chip">Unit tutor</span></div></div>
             <div class="q"><h4>Monitor</h4><div class="chips"><span class="chip">General public</span></div></div>
-            <div class="q"><h4>Keep informed</h4><div class="chips"><span class="chip">TVAA FC squad</span><span class="chip">Donors</span><span class="chip">Ambassadors</span></div></div>
+            <div class="q"><h4>Keep informed</h4><div class="chips"><span class="chip">TVAA FC squad</span><span class="chip">Donors</span><span class="chip">Ambassador</span></div></div>
             <span class="ax axx">Interest</span>
           </div>
           <figcaption>Filled red: stakeholders who moved into the key-player quadrant.</figcaption>
@@ -1262,15 +1268,15 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
     <div class="block stack">
       <div class="read flow">
         <h2>Managing risk</h2>
-        <p>We scored each risk as impact × probability on a 1–5 scale <span class="cite">(Maylor, 2021)</span> and kept the register as a working document. <span class="todo">[Check these scores match the risk assessment submitted in week 4.]</span></p>
+        <p>We scored each risk as impact × probability on a 1–5 scale <span class="cite">(Maylor and Turner, 2022)</span> and kept the register as a working document. <span class="todo">[Check these scores match the risk assessment submitted in week 4.]</span></p>
       </div>
       <div class="tbl"><table>
         <thead><tr><th scope="col">Risk</th><th scope="col" class="r">Impact</th><th scope="col" class="r">Prob.</th><th scope="col">Rating</th><th scope="col">Mitigation</th></tr></thead>
         <tbody>
-          <tr><td>Venue unavailable on the chosen date</td><td class="r">5</td><td class="r">4</td><td><span class="sev h"><i class="trk"><i style="width:80%"></i></i>20 High</span></td><td>Approach several venues in parallel; keep the date flexible until confirmed</td></tr>
+          <tr><td>Venue unavailable on the chosen date</td><td class="r">5</td><td class="r">4</td><td><span class="sev h"><i class="trk"><i style="width:80%"></i></i>20 High</span></td><td>Approach several venues in parallel; keep the kick-off time flexible until confirmed</td></tr>
           <tr><td>Player injury</td><td class="r">4</td><td class="r">3</td><td><span class="sev m"><i class="trk"><i style="width:48%"></i></i>12 Medium</span></td><td>Qualified referee, first-aid kit, named first aider, venue emergency procedures</td></tr>
           <tr><td>Poor weather or failing light</td><td class="r">3</td><td class="r">3</td><td><span class="sev"><i class="trk"><i style="width:36%"></i></i>9 Low</span></td><td>Floodlit all-weather 4G pitch</td></tr>
-          <tr><td>Low turnout or donations</td><td class="r">3</td><td class="r">3</td><td><span class="sev"><i class="trk"><i style="width:36%"></i></i>9 Low</span></td><td>Online campaign and ambassador videos; donations open before and after the day</td></tr>
+          <tr><td>Low turnout or donations</td><td class="r">3</td><td class="r">3</td><td><span class="sev"><i class="trk"><i style="width:36%"></i></i>9 Low</span></td><td>Online campaign and ambassador video; donations open before and after the day</td></tr>
           <tr><td>Not enough players available</td><td class="r">4</td><td class="r">2</td><td><span class="sev"><i class="trk"><i style="width:32%"></i></i>8 Low</span></td><td>WhatsApp availability polls; squad of 15 or more with substitutes</td></tr>
         </tbody>
       </table></div>
@@ -1280,7 +1286,7 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
       </div>
       <div class="venue panel">
       <div class="chain" aria-label="How one risk led to the next">
-        <span class="r">Venue falls through</span><span class="r">Date at risk</span><span class="r">Opposition availability</span><span class="r">Promotion delayed</span><span class="m">Response: parallel venue approaches, date held with Mindset United</span>
+        <span class="r">Venue falls through</span><span class="r">Date at risk</span><span class="r">Opposition availability</span><span class="r">Promotion delayed</span><span class="m">Response: parallel venue approaches, date agreed with Mindset United, kick-off time kept flexible</span>
       </div>
       <div class="route">
         <svg viewBox="0 0 1000 250" role="img" aria-labelledby="routeT routeD">
@@ -1315,7 +1321,7 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
     <div class="block stack">
       <div class="read flow">
         <h2>Managing resources and money</h2>
-        <p>Each team had a budget of up to £100. We treated it as an investment and used financial bootstrapping wherever possible: the graphics were made in-house, the ambassador videos cost nothing, and Mindset United covered the referee. Our only cost was the £85 pitch hire, which is being reclaimed through the University's expenses process.</p>
+        <p>Each team had a budget of up to £100. We treated it as an investment and used financial bootstrapping, meeting needs without spending money, wherever possible <span class="cite">(Winborg and Landström, 2001)</span>: the graphics were made in-house, the ambassador video cost nothing, and Mindset United covered the referee. Our only cost was the £85 pitch hire, which is being reclaimed through the University's expenses process.</p>
       </div>
       <div class="tbl"><table>
         <thead><tr><th scope="col">Item</th><th scope="col" class="r">Cost</th><th scope="col">Funded by</th></tr></thead>
@@ -1333,6 +1339,7 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
           <div class="rb up"><span>Raised online</span><i style="--w:100%"></i><em>£1,185</em></div>
         </div>
       </div>
+      <p class="read">The ratio shows how far bootstrapping stretched a small budget, but it flatters us. It leaves out the hours given for free by the team, both clubs and the referee, so it measures cash efficiency, not the full cost of the event.</p>
     </div>
 
     <nav class="pager" aria-label="Page navigation"><a href="#project"><small>Previous</small>The Project</a><a class="next" href="#impact"><small>Next</small>Impact &amp; Reflection</a></nav>
@@ -1356,8 +1363,9 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
         <li><span class="code">O4</span><div><b>Bring TVAA FC's events back</b><span class="k">Target: a well-attended event and a lasting link</span></div><div><span class="k">Result</span><span class="todo">[attendance; plans for a return fixture?]</span></div><div><span class="k">Evidence</span>Stakeholder feedback</div></li>
       </ol>
       <div class="read flow">
-        <p>The average online donation was £28.90. Because TVAA receives no government or NHS funding <span class="cite">(TVAA, 2026)</span>, money raised this way pays directly for its service. We have avoided claiming outcomes we cannot measure, such as how many people now understand how TVAA is funded.</p>
+        <p>The average online donation was £28.90. Because TVAA receives no government or NHS funding <span class="cite">(TVAA, 2026)</span>, money raised this way pays directly for its service. <span class="todo">[Add what TVAA says this amount pays for, with a source.]</span> We have avoided claiming outcomes we cannot measure, such as how many people now understand how TVAA is funded.</p>
       </div>
+      <p class="read">We asked people on both sides of the touchline what the day meant to them. <span class="todo">[Once the quotes are in, add one or two sentences on the themes they share.]</span></p>
       <div class="tst panel" id="voices">
         <!-- Headshots: put each file in img/people/ and set data-src on its line below.
              Quotes: replace the bracketed placeholder with the person's words. -->
@@ -1400,7 +1408,7 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
 
     <div class="block read flow">
       <h2>Conclusion</h2>
-      <p>In five weeks, Team 5 helped bring a TVAA FC charity match back. It raised £1,465 including Gift Aid for a charity that receives no government funding, for £85 of spending. The match happened because we kept re-planning when venues fell through and built strong relationships with TVAA FC and Mindset United. Those relationships are the project's most lasting result and the basis for TVAA FC's future events.</p>
+      <p>In five weeks, Team 5 helped bring a TVAA FC charity match back. It raised £1,465 including Gift Aid for a charity that receives no government funding, for £85 of spending. The match happened because we kept re-planning when venues fell through and built strong relationships with TVAA FC and Mindset United. We hope those relationships become the basis for TVAA FC's future events.</p>
     </div>
     <nav class="pager" aria-label="Page navigation"><a href="#management"><small>Previous</small>How We Managed It</a><a class="next" href="#references"><small>Next</small>References</a></nav>
   </div>
@@ -1422,9 +1430,10 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
       <p>Edmondson, A.C., 2023. <i>Right kind of wrong: the science of failing well</i>. New York: Simon &amp; Schuster.</p>
       <p>Harrison, J.S., Bosse, D.A. and Phillips, R.A., 2010. Managing for stakeholders, stakeholder utility functions, and competitive advantage. <i>Strategic Management Journal</i>, 31(1), pp.58–74.</p>
       <p>JustGiving, 2026. <i>Thames Valley Air Ambulance FC is fundraising for Thames Valley Air Ambulance</i> [Online]. Available from: https://www.justgiving.com/page/thames-valley-air-ambulance-fc-26 [Accessed 12 November 2026].</p>
-      <p>Kotler, P., 2020. <i>Principles of marketing</i>. Global ed. Harlow: Pearson Education.</p>
+      <p>Kotler, P. and Armstrong, G., 2020. <i>Principles of marketing</i>. 18th ed., Global ed. Harlow: Pearson Education.</p>
       <p>Lengel, R.H. and Daft, R.L., 1988. The selection of communication media as an executive skill. <i>Academy of Management Executive</i>, 2(3), pp.225–232.</p>
-      <p>Maylor, H., 2021. <i>Project management</i>. 5th ed. Harlow: Pearson.</p>
+      <p>Mair, J. and Martí, I., 2006. Social entrepreneurship research: a source of explanation, prediction, and delight. <i>Journal of World Business</i>, 41(1), pp.36–44.</p>
+      <p>Maylor, H. and Turner, N., 2022. <i>Project management</i>. 5th ed. Harlow: Pearson.</p>
       <p>Mendelow, A.L., 1981. Environmental scanning: the impact of the stakeholder concept. <i>Proceedings of the Second International Conference on Information Systems</i>. Cambridge, MA, pp.407–418.</p>
       <p>Olander, S. and Landin, A., 2005. Evaluation of stakeholder influence in the implementation of construction projects. <i>International Journal of Project Management</i>, 23(4), pp.321–328.</p>
       <p>Sarasvathy, S.D., 2001. Causation and effectuation: toward a theoretical shift from economic inevitability to entrepreneurial contingency. <i>Academy of Management Review</i>, 26(2), pp.243–263.</p>
@@ -1432,7 +1441,8 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
       <p>Thames Valley Air Ambulance (TVAA), 2026. <i>About us</i> [Online]. Available from: https://www.tvairambulance.org.uk/about-us [Accessed 9 November 2026].</p>
       <p>Tuckman, B.W., 1965. Developmental sequence in small groups. <i>Psychological Bulletin</i>, 63(6), pp.384–399.</p>
       <p>Turner, J.R. and Müller, R., 2003. On the nature of the project as a temporary organization. <i>International Journal of Project Management</i>, 21(1), pp.1–8.</p>
-      <p>Whittington, R., Regnér, P., Angwin, D., Johnson, G. and Scholes, K., 2021. <i>Exploring strategy</i>. 12th ed. Harlow: Pearson.</p>
+      <p>Whittington, R., Regnér, P., Angwin, D., Johnson, G. and Scholes, K., 2020. <i>Exploring strategy</i>. 12th ed. Harlow: Pearson.</p>
+      <p>Winborg, J. and Landström, H., 2001. Financial bootstrapping in small businesses: examining small business managers' resource acquisition behaviors. <i>Journal of Business Venturing</i>, 16(3), pp.235–254.</p>
     </div>
     <nav class="pager" aria-label="Page navigation"><a href="#impact"><small>Previous</small>Impact &amp; Reflection</a><a class="next" href="#appendices"><small>Next</small>Appendices</a></nav>
   </div>
@@ -1492,10 +1502,10 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
   var countEl=root.querySelector('.lens-count'), barEl=root.querySelector('.lens-bar>span');
   var SLIDES=[
     {kicker:'The cause',title:'A lifesaving charity',cap:'Thames Valley Air Ambulance was called out 3,302 times last year, yet it receives no government or NHS funding.',href:'#project',go:'Why we chose TVAA',panel:'cause'},
-    {kicker:'The obstacle',title:'Six venues, one pitch',cap:'Five grounds fell through. Mindset United’s manager secured the 4G pitch at Kingsbrook, and we moved kick-off to 4pm.',href:'#management',go:'See how we managed it',panel:'venues'},
+    {kicker:'The obstacle',title:'Six venues, one pitch',cap:'We approached six venues before one worked. Mindset United’s manager secured the 4G pitch at Kingsbrook, and we moved kick-off to 4pm.',href:'#management',go:'See how we managed it',panel:'venues'},
     {kicker:'The campaign',title:'One destination',cap:'Our own matchday graphics, a LinkedIn post and an ambassador video, all sending people to a single JustGiving page.',href:'#project',go:'See the campaign',src:'img/matchday-graphic.jpg',frame:true,l1:'Matchday graphic',l2:'Made in-house for the campaign'},
     {kicker:'Sunday 8 November',title:'Kick-off, 4pm',cap:'TVAA FC played Mindset United under the Kingsbrook floodlights, then both clubs gathered at Rivets to watch the football.',href:'#project',go:'See the match',src:'img/match/floodlit.jpg',l1:'Under the lights',l2:'The Kingsbrook School 4G, 4pm'},
-    {kicker:'The result',title:'What it raised',cap:'Every £1 we spent brought in about £14 in online donations, and the match gave TVAA FC its first community event in years.',href:'#impact',go:'See the impact',panel:'result'}
+    {kicker:'The result',title:'What it raised',cap:'Every £1 we spent brought in about £14 in online donations, and the match brought both clubs and their supporters together for the day.',href:'#impact',go:'See the impact',panel:'result'}
   ];
   var n=SLIDES.length;
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -2227,6 +2237,9 @@ figure:has(>.gazebos){max-width:560px;width:100%;padding:22px 22px 18px}
     quote.className='tst-quote'+(d.todo?' is-todo':''); quote.textContent='';
     var words=d.quote.split(' ').map(function(w,k,a){ var s=el('span','w',w+(k<a.length-1?' ':'')); quote.appendChild(s); return s; });
     count.textContent=(i+1)+' of '+n;
+    /* long quotes keep their size and scroll inside the box */
+    quote.scrollTop=0; var long=quote.scrollHeight>quote.clientHeight+2;
+    quote.classList.toggle('scrolls',long); if(long){ quote.tabIndex=0; quote.setAttribute('role','group'); quote.setAttribute('aria-label','Quote from '+d.name+', scrollable'); } else { quote.removeAttribute('tabindex'); quote.removeAttribute('role'); quote.removeAttribute('aria-label'); }
     tk.forEach(function(b,k){ if(k===i) b.setAttribute('aria-current','true'); else b.removeAttribute('aria-current'); });
     if(G&&!calm&&!quiet){
       G.fromTo([name,role],{y:20,opacity:0},{y:0,opacity:1,duration:.2,ease:'power2.inOut',overwrite:true});
